@@ -21,7 +21,7 @@
           }, "jsonp");
 
           var connected = false;
-          var socket = io.connect('https://pulse-mapper.herokuapp.com:4200');
+          var socket = io.connect('https://pulse-mapper.herokuapp.com:'+ (location.port || '443'));
           var mapData = function(data){
             socket.emit('map', data);
           };
