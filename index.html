@@ -21,12 +21,13 @@
           }, "jsonp");
 
           var connected = false;
-          var socket = io.connect('http://localhost:4200');
+          var socket = io.connect('https://pulse-mapper.herokuapp.com:4200');
           var mapData = function(data){
             socket.emit('map', data);
           };
 
           var onConnect = function(data){
+            alert("Connection approved");
             connected = true;
           }
 
