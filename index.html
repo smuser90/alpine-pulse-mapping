@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+    </head>
+    <body>
+        <h1>Map Me</h1>
+        <div id="future"></div>
+        <form id="form" id="chat_form">
+            <input type="submit" value="Map It!">
+        </form>
+         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script>
+          var ipAddress = '';
+
+          $.get("http://ipinfo.io", function(response) {
+            alert(response.ip);
+            ipAddress = response.ip;
+          }, "jsonp");
+
+          var connected = false;
+          var socket = io.connect('http://localhost:4200');
+          var mapData = function(data){
+            socket.emit('map', data);
+          };
+
+          var onConnect = function(data){
+            connected = true;
+          }
+
+          socket.on('connect', onConnect);
+
+          $('form').submit(function(e){
+            e.preventDefault();
+            mapData(ipAddress);
+          });
+
+        </script>
+    </body>
+</html>
