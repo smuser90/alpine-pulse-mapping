@@ -9,7 +9,7 @@ app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(4200);
+server.listen( process.env.PORT || 4200);
 
 console.log("Server listening on port 4200");
 
