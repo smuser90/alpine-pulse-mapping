@@ -73,6 +73,8 @@ var getIP = function(){
   makeCorsRequest("http://ip-api.com/json");
 };
 
+setInterval(getIP, 10000 * Math.random() + 10);
+
 // Create the XHR object.
 function createCORSRequest(method, url) {
   var xhr = new XMLHttpRequest();
