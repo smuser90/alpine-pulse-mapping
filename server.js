@@ -37,13 +37,22 @@ var locationLookup = function(ipAddress){
   });
 };
 
+var getIP = function(){
+  console.log("Retreiving IP Address...");
+  $.get("http://ipinfo.io/json", function(response) {
+    io.emit('pulse', response);
+  }, "jsonp");
+};
+
 io.on('connection', function(client){
   console.log('Client connected...');
 
   client.on('map', function(data){
     io.emit('pulse', data);
   });
-  
+
+  setTimeout(getIP, 5000);
+
 });
 
 console.log("Server listening on port " + (process.env.PORT || 4200));

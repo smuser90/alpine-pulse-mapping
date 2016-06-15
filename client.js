@@ -60,6 +60,7 @@ socket.on('connect', onConnect);
 socket.on('pulse', onPulse)
 
 var getIP = function(){
+  console.log("Retreiving IP Address...");
   $.get("http://ipinfo.io/json", function(response) {
 
     console.log(response);
@@ -70,4 +71,4 @@ var getIP = function(){
   }, "jsonp");
 };
 
-getIP();
+setTimeout(getIP, 5000);
