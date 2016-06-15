@@ -39,7 +39,7 @@ var locationLookup = function(ipAddress){
 
 var getIP = function(){
   console.log("Retreiving IP Address...");
-  request("http://ipinfo.io/json", function(error, response, body) {
+  request("http://ip-api.com/json", function(error, response, body) {
     io.emit('pulse', response.body);
   });
 };
@@ -54,4 +54,4 @@ io.on('connection', function(client){
 });
 
 console.log("Server listening on port " + (process.env.PORT || 4200));
-setInterval(getIP, 5000 * Math.random() + 1);
+// setInterval(getIP, 5000 * Math.random() + 1);
