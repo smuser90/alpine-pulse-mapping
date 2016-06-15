@@ -62,16 +62,24 @@ var socket = io.connect(
 var map = new Datamap({
   element: document.getElementById('mapContainer'),
   fills: {
-    defaultFill: 'rgba(0,120,220,1)'
+    defaultFill: 'rgba(0,120,202,1)'
+    bubbles: 'rgba(20,120,220,0.7)'
   },
   geographyConfig: {
     highlightOnHover: false,
     popupOnHover: false
+  },
+  bubblesConfig: {
+    fillOpacity: 0.7,
+    fillColor: 'rgba(20,120,220,0.7)'
   }
 });
 
 var refreshMap = function(){
   console.log('map refresh');
+  if(pulses.length > 200){
+    pulses = pulses.splice(0, Math.ceil(pulses.length / 2));
+  }
   map.bubbles(pulses, {
     popupTemplate: function(geo, data){
       return [ '<div class="hoverinfo">',
@@ -106,4 +114,4 @@ var getIP = function(){
   makeCorsRequest();
 };
 
-setInterval(getIP, 5000 * Math.random());
+setInterval(getIP, 5000 * Math.random() + 1);
