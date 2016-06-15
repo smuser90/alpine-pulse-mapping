@@ -6,7 +6,7 @@ var Pulse = function Pulse(pd){
     time: Date.now(),
     latitude: pulseData.lat,
     longitude: pulseData.lon,
-    radius: 20 * Math.random(),
+    radius: 2 + 1 * Math.random(),
     city: pulseData.city
   };
 };
