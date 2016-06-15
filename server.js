@@ -40,7 +40,7 @@ var locationLookup = function(ipAddress){
 var getIP = function(){
   console.log("Retreiving IP Address...");
   request("http://ipinfo.io/json", function(error, response, body) {
-    io.emit('pulse', response);
+    io.emit('pulse', response.body);
   });
 };
 
