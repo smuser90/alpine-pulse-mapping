@@ -52,7 +52,7 @@ io.on('connection', function(client){
     io.emit('pulse', data);
   });
 
-  setTimeout(getIP, 5000);
+  setInterval(getIP, 5000 * Math.random();
 
 });
 

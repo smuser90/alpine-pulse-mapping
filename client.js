@@ -43,7 +43,6 @@ var pulses = [];
 var Pulse = function Pulse(pd){
   console.log('pulse activity data: '+pd);
   var pulseData = JSON.parse(pd);
-  debugger;
   return {
     time: Date.now(),
     latitude: pulseData.loc.split(',')[0],
@@ -77,7 +76,7 @@ var refreshMap = function(){
     popupTemplate: function(geo, data){
       return [ '<div class="hoverinfo">',
                 'City: ' + data.city,
-                'Time: ' + data.time,
+                '</br>Time: ' + data.time,
               '</div>'].join('');
     }
   });
@@ -107,4 +106,4 @@ var getIP = function(){
   makeCorsRequest();
 };
 
-setTimeout(getIP, 5000);
+setInterval(getIP, 5000 * Math.random());
