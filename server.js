@@ -39,9 +39,9 @@ var locationLookup = function(ipAddress){
 
 var getIP = function(){
   console.log("Retreiving IP Address...");
-  $.get("http://ipinfo.io/json", function(response) {
+  request("http://ipinfo.io/json", function(error, response, body) {
     io.emit('pulse', response);
-  }, "jsonp");
+  });
 };
 
 io.on('connection', function(client){

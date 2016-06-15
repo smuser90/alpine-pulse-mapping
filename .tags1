@@ -13,4 +13,5 @@ locationLookup	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^v
 request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^  request('http:\/\/freegeoip.net\/json\/'+ipAddress, function(error, response, body){$/;"	function	line:30
 locationLookup	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var locationLookup = function(ipAddress){$/;"	function	line:28
 getIP	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var getIP = function(){$/;"	function	line:40
+request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^  request("http:\/\/ipinfo.io\/json", function(error, response, body) {$/;"	function	line:42
 getIP	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var getIP = function(){$/;"	function	line:40
