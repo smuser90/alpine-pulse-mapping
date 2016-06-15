@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pulse Map</title>
+</head>
+
+<body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="node_modules/datamaps/dist/datamaps.world.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+<div id="container" style="position: relative; width: 1070px; height: 500px;"></div>
+<script>
+    var map = new Datamap({
+      element: document.getElementById('container'),
+      fills: {
+            defaultFill: 'rgba(00,139,202,0.9)' // Any hex, color name or rgb/rgba value
+            },
+      geographyConfig: {
+            highlightOnHover: false,
+            popupOnHover: false
+            }
+      });
+</script>
+
+<script>
+  var Pulse = function(lat, long){
+    return {
+      time: Date.now(),
+      latitude: lat,
+      longitude: long
+    };
+  };
+
+  var pulses = [];
+  var ipAddress = '';
+
+  $.get("http://ipinfo.io", function(response) {
+    alert('IP Address: '+response.ip);
+    ipAddress = response.ip;
+  }, "jsonp");
+
+  var connected = false;
+  var socket = io.connect('http://localhost:4200');
+
+  var onConnect = function(data){
+    alert("Connection approved");
+    connected = true;
+  }
+
+  var addPoint = function(point){
+    console.log('Got Point:'+point);
+  }
+
+  socket.on('connect', onConnect);
+  socket.on('point', addPoint);
+
+
+</script>
+</body>
+</html>

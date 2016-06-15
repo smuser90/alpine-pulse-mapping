@@ -51,9 +51,7 @@ io.on('connection', function(client){
     console.log('Received data from client: '+data);
     io.emit('pulse', data);
   });
-
-  setInterval(getIP, 5000 * Math.random() + 1);
-
 });
 
 console.log("Server listening on port " + (process.env.PORT || 4200));
+setInterval(getIP, 5000 * Math.random() + 1);
