@@ -43,6 +43,7 @@ var pulses = [];
 var Pulse = function Pulse(pd){
   console.log('pulse activity data: '+pd);
   var pulseData = pd; //JSON.parse(pd);
+  debugger;
   return {
     time: Date.now(),
     latitude: pulseData.loc.split(',')[0],
