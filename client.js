@@ -42,7 +42,7 @@ function makeCorsRequest() {
 var pulses = [];
 var Pulse = function Pulse(pd){
   console.log('pulse activity data: '+pd);
-  var pulseData = pd; //JSON.parse(pd);
+  var pulseData = JSON.parse(pd);
   debugger;
   return {
     time: Date.now(),
