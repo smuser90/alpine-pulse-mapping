@@ -48,6 +48,7 @@ io.on('connection', function(client){
   console.log('Client connected...');
 
   client.on('map', function(data){
+    console.log('Received data from client: '+data);
     io.emit('pulse', data);
   });
 
