@@ -62,7 +62,7 @@ var socket = io.connect(
 var map = new Datamap({
   element: document.getElementById('mapContainer'),
   fills: {
-    defaultFill: 'rgba(0,120,202,1)'
+    defaultFill: 'rgba(0,120,202,1)',
     bubbles: 'rgba(20,120,220,0.7)'
   },
   geographyConfig: {
