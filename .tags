@@ -39,6 +39,17 @@ script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <s
 script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <script src="https:\/\/code.jquery.com\/jquery-1.10.2.js"><\/script>$/;"	function	line:17
 script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <script src="https:\/\/cdn.socket.io\/socket.io-1.4.5.js"><\/script>$/;"	function	line:18
 script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <script src="client.js"><\/script>$/;"	function	line:19
+express	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var express = require('express');$/;"	variable	line:1
+app	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var app = express();$/;"	variable	line:2
+server	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var server = require('http').createServer(app);$/;"	variable	line:3
+io	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var io = require('socket.io')(server);$/;"	variable	line:4
+request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var request = require('request');$/;"	variable	line:5
+locationLookup	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var locationLookup = function(ipAddress){$/;"	function	line:28
+request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^  request('http:\/\/freegeoip.net\/json\/'+ipAddress, function(error, response, body){$/;"	function	line:30
+locationLookup	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var locationLookup = function(ipAddress){$/;"	function	line:28
+getIP	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var getIP = function(){$/;"	function	line:40
+request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^  request("http:\/\/ipinfo.io\/json", function(error, response, body) {$/;"	function	line:42
+getIP	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var getIP = function(){$/;"	function	line:40
 createCORSRequest	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^function createCORSRequest(method, url) {$/;"	function	line:2
 createCORSRequest	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^function createCORSRequest(method, url) {$/;"	function	line:2
 makeCorsRequest	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^function makeCorsRequest() {$/;"	function	line:19
@@ -64,14 +75,3 @@ onPulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var onPu
 onPulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var onPulse = function(data){$/;"	function	line:94
 getIP	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var getIP = function(){$/;"	function	line:103
 socket.on	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^socket.on('connect', onConnect);$/;"	function	line:99
-express	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var express = require('express');$/;"	variable	line:1
-app	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var app = express();$/;"	variable	line:2
-server	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var server = require('http').createServer(app);$/;"	variable	line:3
-io	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var io = require('socket.io')(server);$/;"	variable	line:4
-request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var request = require('request');$/;"	variable	line:5
-locationLookup	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var locationLookup = function(ipAddress){$/;"	function	line:28
-request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^  request('http:\/\/freegeoip.net\/json\/'+ipAddress, function(error, response, body){$/;"	function	line:30
-locationLookup	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var locationLookup = function(ipAddress){$/;"	function	line:28
-getIP	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var getIP = function(){$/;"	function	line:40
-request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^  request("http:\/\/ipinfo.io\/json", function(error, response, body) {$/;"	function	line:42
-getIP	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var getIP = function(){$/;"	function	line:40

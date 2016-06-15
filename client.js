@@ -47,7 +47,7 @@ var Pulse = function Pulse(pd){
     time: Date.now(),
     latitude: pulseData.loc.split(',')[0],
     longitude: pulseData.loc.split(',')[1],
-    radius: 40,
+    radius: 20 * Math.random(),
     city: pulseData.city
   };
 };
