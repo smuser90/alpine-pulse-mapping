@@ -1,0 +1,64 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ipAddress	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/app.js	/^var ipAddress = '';$/;"	variable	line:1
+mapData	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/app.js	/^var mapData = function(data){$/;"	function	line:3
+mapData	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/app.js	/^var mapData = function(data){$/;"	function	line:3
+name	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "name": "alpine-pulse-mapping",$/;"	function	line:2
+version	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "version": "1.0.0",$/;"	function	line:3
+description	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "description": "Map anonymized pulse data via ip address",$/;"	function	line:4
+main	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "main": "index.js",$/;"	function	line:5
+scripts	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "scripts": {$/;"	function	line:6
+start	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^    "start": "node server.js",$/;"	function	line:7
+test	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^    "test": "echo \\"Error: no test specified\\" && exit 1"$/;"	function	line:8
+repository	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "repository": {$/;"	function	line:10
+type	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^    "type": "git",$/;"	function	line:11
+url	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^    "url": "git+https:\/\/github.com\/smuser90\/alpine-pulse-mapping.git"$/;"	function	line:12
+author	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "author": "Sam Musso",$/;"	function	line:14
+license	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "license": "ISC",$/;"	function	line:15
+bugs	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "bugs": {$/;"	function	line:16
+url	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^    "url": "https:\/\/github.com\/smuser90\/alpine-pulse-mapping\/issues"$/;"	function	line:17
+homepage	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "homepage": "https:\/\/github.com\/smuser90\/alpine-pulse-mapping#readme",$/;"	function	line:19
+dependencies	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^  "dependencies": {$/;"	function	line:20
+express	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^    "express": "^4.13.4",$/;"	function	line:21
+request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^    "request": "^2.72.0",$/;"	function	line:22
+socket.io	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/package.json	/^    "socket.io": "^1.4.6"$/;"	function	line:23
+Alpine Pulse Mapping	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/README.md	/^# Alpine Pulse Mapping$/;"	function	line:1
+express	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var express = require('express');$/;"	variable	line:1
+app	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var app = express();$/;"	variable	line:2
+server	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var server = require('http').createServer(app);$/;"	variable	line:3
+io	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var io = require('socket.io')(server);$/;"	variable	line:4
+request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var request = require('request');$/;"	variable	line:5
+locationLookup	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var locationLookup = function(ipAddress){$/;"	function	line:28
+request	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^  request('http:\/\/freegeoip.net\/json\/'+ipAddress, function(error, response, body){$/;"	function	line:30
+locationLookup	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server.js	/^var locationLookup = function(ipAddress){$/;"	function	line:28
+html	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^<html lang="en">$/;"	function	line:2
+head	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^    <head>$/;"	function	line:3
+title	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <title>World Pulse<\/title>$/;"	function	line:4
+body	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^    <body>$/;"	function	line:7
+div	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^<div id="mapContainer" style="position: relative; width: 1000px; height: 500px;"><\/div>$/;"	function	line:9
+footer	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^    <footer>$/;"	function	line:13
+script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <script src="\/\/cdnjs.cloudflare.com\/ajax\/libs\/d3\/3.5.3\/d3.min.js"><\/script>$/;"	function	line:14
+script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <script src="\/\/cdnjs.cloudflare.com\/ajax\/libs\/topojson\/1.6.9\/topojson.min.js"><\/script>$/;"	function	line:15
+script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <script src='node_modules\/datamaps\/dist\/datamaps.world.min.js'><\/script>$/;"	function	line:16
+script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <script src="https:\/\/code.jquery.com\/jquery-1.10.2.js"><\/script>$/;"	function	line:17
+script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <script src="https:\/\/cdn.socket.io\/socket.io-1.4.5.js"><\/script>$/;"	function	line:18
+script	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/index.html	/^      <script src="client.js"><\/script>$/;"	function	line:19
+pulses	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var pulses = [];$/;"	variable	line:1
+Pulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var Pulse = function Pulse(pd){$/;"	function	line:2
+Pulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var Pulse = function Pulse(pd){$/;"	function	line:2
+ipAddress	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var ipAddress = '';$/;"	variable	line:14
+connected	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var connected = false;$/;"	variable	line:15
+socket	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var socket = io.connect($/;"	variable	line:16
+refreshMap	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var refreshMap = function(){$/;"	function	line:32
+popupTemplate	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^    popupTemplate: function(geo, data){$/;"	function	line:35
+refreshMap	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var refreshMap = function(){$/;"	function	line:32
+mapData	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var mapData = function(data){$/;"	function	line:44
+mapData	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var mapData = function(data){$/;"	function	line:44
+onConnect	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var onConnect = function(data){$/;"	function	line:48
+onConnect	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var onConnect = function(data){$/;"	function	line:48
+onPulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var onPulse = function(data){$/;"	function	line:53
+onPulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var onPulse = function(data){$/;"	function	line:53

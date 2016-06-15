@@ -1,43 +1,21 @@
 <!doctype html>
 <html lang="en">
     <head>
-
+      <title>World Pulse</title>
     </head>
+
     <body>
-        <h1>Map Me</h1>
-        <div id="future"></div>
-        <form id="form" id="chat_form">
-            <input type="submit" value="Map It!">
-        </form>
-         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
 
-        <script>
-          var ipAddress = '';
+<div id="mapContainer" style="position: relative; width: 1000px; height: 500px;"></div>
 
-          $.get("http://ipinfo.io", function(response) {
-            alert(response.ip);
-            ipAddress = response.ip;
-          }, "jsonp");
-
-          var connected = false;
-          var socket = io.connect('https://pulse-mapper.herokuapp.com:'+ (location.port || '443'));
-          var mapData = function(data){
-            socket.emit('map', data);
-          };
-
-          var onConnect = function(data){
-            alert("Connection approved");
-            connected = true;
-          }
-
-          socket.on('connect', onConnect);
-
-          $('form').submit(function(e){
-            e.preventDefault();
-            mapData(ipAddress);
-          });
-
-        </script>
     </body>
+
+    <footer>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+      <script src='node_modules/datamaps/dist/datamaps.world.min.js'></script>
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+      <script src="client.js"></script>
+    </footer>
 </html>
