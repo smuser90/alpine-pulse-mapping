@@ -34,11 +34,10 @@ var map = new Datamap({
   }
 });
 
+
+
 var refreshMap = function(){
   console.log('map refresh');
-  if(pulses.length > 200){
-    pulses = pulses.splice(0, Math.ceil(pulses.length / 2));
-  }
   map.bubbles(pulses, {
     popupTemplate: function(geo, data){
       return [ '<div class="hoverinfo">',
