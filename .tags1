@@ -19,3 +19,5 @@ onConnect	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var on
 onConnect	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var onConnect = function(data){$/;"	function	line:48
 onPulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var onPulse = function(data){$/;"	function	line:53
 onPulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var onPulse = function(data){$/;"	function	line:53
+getIP	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^var getIP = function(){$/;"	function	line:62
+socket.on	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/client.js	/^socket.on('connect', onConnect);$/;"	function	line:58

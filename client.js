@@ -59,10 +59,15 @@ socket.on('connect', onConnect);
 
 socket.on('pulse', onPulse)
 
-$.get("http://ipinfo.io/json", function(response) {
+var getIP = function(){
+  $.get("http://ipinfo.io/json", function(response) {
 
-  if(connected){
     console.log(response);
-    mapData(response);
-  }
-}, "jsonp");
+
+    if(connected){
+      mapData(response);
+    }
+  }, "jsonp");
+};
+
+getIP();
