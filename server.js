@@ -25,33 +25,14 @@ app.get('/client.js',
 
 server.listen( process.env.PORT || 4200);
 
-var locationLookup = function(ipAddress){
-
-  request('http://freegeoip.net/json/'+ipAddress, function(error, response, body){
-    if(!error && response.statusCode == 200){
-      var geoData = JSON.parse(body);
-      console.log(geoData);
-    }else{
-      console.log("ERROR: "+error+"\nStatus Code: "+response.statusCode);
-    }
-  });
-};
-
-var getIP = function(){
-  console.log("Retreiving IP Address...");
-  request("http://ip-api.com/json", function(error, response, body) {
-    io.emit('pulse', response.body);
-  });
-};
-
 io.on('connection', function(client){
-  console.log('Client connected...');
+  var client_ip_address = io.request.connection.remoteAddress;
+  console.log('Client connected... ['+client_ip_address+']');
 
   client.on('map', function(data){
-    console.log('Received data from client: '+data);
+    console.log('Received data from client: ' + data);
     io.emit('pulse', data);
   });
 });
 
 console.log("Server listening on port " + (process.env.PORT || 4200));
-// setInterval(getIP, 5000 * Math.random() + 1);
