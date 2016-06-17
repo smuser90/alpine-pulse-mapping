@@ -21,6 +21,7 @@
     "JSONStream": "^1.1.2",
     "datamaps": "^0.5.5",
     "express": "^4.13.4",
+    "geoip-lite": "^1.1.8",
     "mongojs": "^2.4.0",
     "mongoose": "^4.5.0",
     "request": "^2.72.0",

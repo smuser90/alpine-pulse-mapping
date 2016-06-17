@@ -5,6 +5,7 @@ var io = require('socket.io')(server);
 var request = require('request');
 var mongojs = require('mongojs');
 var JSONStream = require('JSONStream');
+var geoIP = require('geoip-lite');
 
 var db = mongojs('smuser:backhand@ds017544.mlab.com:17544/pulse-activity');
 
@@ -19,15 +20,15 @@ db.on('connect', function(){
 
 var activity = db.collection('activity');
 
-var Pulse = function Pulse(pd){
-  console.log('pulse activity data: '+pd);
-  var pulseData = JSON.parse(pd);
+var Pulse = function Pulse(pulseData){
   return {
     time: Date.now(),
-    latitude: pulseData.lat,
-    longitude: pulseData.lon,
+    latitude: pulseData.ll[0],
+    longitude: pulseData.ll[1],
     radius: 2 + 1 * Math.random(),
-    city: pulseData.city
+    city: pulseData.city,
+    region: pulseData.region,
+    country: pulseData.country
   };
 };
 
@@ -58,15 +59,16 @@ app.get('/client.js',
 server.listen( process.env.PORT || 4200);
 
 io.on('connection', function(client){
-  var client_ip_address = io.request.connection.remoteAddress;
+  var client_ip_address = client.request.connection.remoteAddress;
   console.log('Client connected... ['+client_ip_address+']');
 
+  var geo = geoIP.lookup(client_ip_address);
 
-
-  client.on('map', function(data){
-    console.log('Received data from client: ' + data);
-    io.emit('pulse', data);
-  });
+  if(geo){
+    io.emit('pulse', geo);
+    activity.insert(new Pulse(geo));
+    console.log("Geo of client: ",geo);
+  }
 });
 
 console.log("Server listening on port " + (process.env.PORT || 4200));

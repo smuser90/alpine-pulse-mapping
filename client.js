@@ -1,21 +1,21 @@
 var pulses = [];
-var Pulse = function Pulse(pd){
-  console.log('pulse activity data: '+pd);
-  var pulseData = JSON.parse(pd);
+var Pulse = function Pulse(pulseData){
   return {
     time: Date.now(),
-    latitude: pulseData.lat,
-    longitude: pulseData.lon,
+    latitude: pulseData.ll[0],
+    longitude: pulseData.ll[1],
     radius: 2 + 1 * Math.random(),
-    city: pulseData.city
+    city: pulseData.city,
+    region: pulseData.region,
+    country: pulseData.country
   };
 };
 
 var ipAddress = '';
 var connected = false;
 var socket = io.connect(
-  // 'https://pulse-mapper.herokuapp.com:' + (location.port || '443')
-  'http://localhost:4200'
+  'https://pulse-mapper.herokuapp.com:' + (location.port || '443')
+  // 'http://localhost:4200'
 );
 
 var map = new Datamap({
@@ -34,8 +34,6 @@ var map = new Datamap({
   }
 });
 
-
-
 var refreshMap = function(){
   console.log('map refresh');
   map.bubbles(pulses, {
@@ -48,67 +46,18 @@ var refreshMap = function(){
   });
 };
 
-var mapData = function(data){
-  socket.emit('map', data);
-};
-
 var onConnect = function(data){
   console.log("Connection approved: "+ Date.now());
   connected = true;
 };
 
 var onPulse = function(data){
-  pulses.push(new Pulse(data));
-  refreshMap();
+  if(data){
+    pulses.push(new Pulse(data));
+    refreshMap();
+  }
 };
 
 socket.on('connect', onConnect);
 
 socket.on('pulse', onPulse);
-
-var getIP = function(){
-  console.log("Retreiving IP Address...");
-
-  makeCorsRequest("http://ip-api.com/json");
-};
-
-setInterval(getIP, 10000 * Math.random() + 10);
-
-// Create the XHR object.
-function createCORSRequest(method, url) {
-  var xhr = new XMLHttpRequest();
-  if ("withCredentials" in xhr) {
-    // XHR for Chrome/Firefox/Opera/Safari.
-    xhr.open(method, url, true);
-  } else if (typeof XDomainRequest != "undefined") {
-    // XDomainRequest for IE.
-    xhr = new XDomainRequest();
-    xhr.open(method, url);
-  } else {
-    // CORS not supported.
-    xhr = null;
-  }
-  return xhr;
-}
-
-// Make the actual CORS request.
-function makeCorsRequest(url) {
-  // All HTML5 Rocks properties support CORS.
-  var xhr = createCORSRequest('GET', url);
-  if (!xhr) {
-    alert('CORS not supported');
-    return;
-  }
-
-  // Response handlers.
-  xhr.onload = function() {
-    var text = xhr.responseText;
-    mapData(text);
-  };
-
-  xhr.onerror = function() {
-    alert('Woops, there was an error making the request.');
-  };
-
-  xhr.send();
-}
