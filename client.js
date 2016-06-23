@@ -34,6 +34,27 @@ var map = new Datamap({
   }
 });
 
+var Get = function Get(yourUrl){
+  var Httpreq = new XMLHttpRequest(); // a new request
+  Httpreq.open("GET",yourUrl,false);
+  Httpreq.send(null);
+  return Httpreq.responseText;
+};
+
+function _ajax_request(url, data, callback, method) {
+    return jQuery.ajax({
+        url: url,
+        type: method,
+        data: data,
+        success: callback
+    });
+}
+
+jQuery.extend({
+    put: function(url, data, callback) {
+        return _ajax_request(url, data, callback, 'PUT');
+}});
+
 var refreshMap = function(){
   console.log('map refresh');
   map.bubbles(pulses, {
@@ -61,3 +82,8 @@ var onPulse = function(data){
 socket.on('connect', onConnect);
 
 socket.on('pulse', onPulse);
+
+console.log("Reporting IP Address to server: "+ipAddress);
+$.put('/map', {}, function(result) {
+    console.log(result);
+});
