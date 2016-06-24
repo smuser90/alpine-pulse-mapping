@@ -56,6 +56,11 @@ app.get('/client.js',
   }
 );
 
+app.put('/map', function(req, res){
+  console.log("Rx'd a map request: "+req.ip);
+  res.send('Enjoy your Pulse!');
+});
+
 server.listen( process.env.PORT || 4200);
 
 io.on('connection', function(client){
