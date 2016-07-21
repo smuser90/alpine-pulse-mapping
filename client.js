@@ -1,21 +1,9 @@
 var pulses = [];
-var Pulse = function Pulse(pulseData){
-  return {
-    time: Date.now(),
-    latitude: pulseData.ll[0],
-    longitude: pulseData.ll[1],
-    radius: 2 + 1 * Math.random(),
-    city: pulseData.city,
-    region: pulseData.region,
-    country: pulseData.country
-  };
-};
-
 var ipAddress = '';
 var connected = false;
 var socket = io.connect(
-  'https://pulse-mapper.herokuapp.com:' + (location.port || '443')
-  // 'http://localhost:4200'
+  // 'https://pulse-mapper.herokuapp.com:' + (location.port || '443')
+  'http://localhost:4200'
 );
 
 var map = new Datamap({
@@ -41,19 +29,29 @@ var Get = function Get(yourUrl){
   return Httpreq.responseText;
 };
 
-function _ajax_request(url, data, callback, method) {
-    return jQuery.ajax({
-        url: url,
-        type: method,
-        data: data,
-        success: callback
-    });
-}
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
 
-jQuery.extend({
-    put: function(url, data, callback) {
-        return _ajax_request(url, data, callback, 'PUT');
-}});
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
 
 var refreshMap = function(){
   console.log('map refresh');
@@ -74,7 +72,7 @@ var onConnect = function(data){
 
 var onPulse = function(data){
   if(data){
-    pulses.push(new Pulse(data));
+    pulses = JSON.parse(data);
     refreshMap();
   }
 };
@@ -83,7 +81,7 @@ socket.on('connect', onConnect);
 
 socket.on('pulse', onPulse);
 
+ipAddress = Get('http://api.ipify.org/?format=json');
 console.log("Reporting IP Address to server: "+ipAddress);
-$.put('/map', {}, function(result) {
-    console.log(result);
-});
+
+post('/map', {ipAddress: JSON.parse(ipAddress).ip});

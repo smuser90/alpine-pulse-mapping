@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 var request = require('request');
 var mongojs = require('mongojs');
 var JSONStream = require('JSONStream');
-var geoIP = require('geoip-lite');
+var bodyParser = require('body-parser');
 
 var db = mongojs('smuser:backhand@ds017544.mlab.com:17544/pulse-activity');
 
@@ -38,6 +38,10 @@ activity.find(function (err, docs){
 });
 
 app.use(express.static(__dirname + '/bower_components'));
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
 
 app.get('/', function(req, res, next) {
     res.sendFile(__dirname + '/index.html');
@@ -56,24 +60,15 @@ app.get('/client.js',
   }
 );
 
-app.put('/map', function(req, res){
-  console.log("Rx'd a map request: "+req.ip);
-  res.send('Enjoy your Pulse!');
+app.post('/map', function(req, res){
+  console.log("Rx'd a map request: "+req.body.ipAddress);
 });
 
 server.listen( process.env.PORT || 4200);
 
 io.on('connection', function(client){
   var client_ip_address = client.request.connection.remoteAddress;
-  console.log('Client connected... ['+client_ip_address+']');
-
-  var geo = geoIP.lookup(client_ip_address);
-
-  if(geo){
-    io.emit('pulse', geo);
-    activity.insert(new Pulse(geo));
-    console.log("Geo of client: ",geo);
-  }
+  console.log('Client connected.');
 });
 
 console.log("Server listening on port " + (process.env.PORT || 4200));
