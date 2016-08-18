@@ -7,13 +7,14 @@ var mongojs = require('mongojs');
 var JSONStream = require('JSONStream');
 var bodyParser = require('body-parser');
 var path = require('path');
+var http = require('http');
 var application_root = __dirname;
 
 var Pulse = function Pulse(pulseData) {
     return {
         time: Date.now(),
-        latitude: pulseData.ll[0],
-        longitude: pulseData.ll[1],
+        latitude: pulseData.lat,
+        longitude: pulseData.lon,
         radius: 2 + 1 * Math.random(),
         city: pulseData.city,
         region: pulseData.region,
@@ -24,6 +25,8 @@ var Pulse = function Pulse(pulseData) {
 var db = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.mlab.com:17544/pulse-activity');
 var activity = db.collection('activity');
 var analytics = db.collection('analytics');
+
+var pulses = [];
 
 db.on('error', function(err) {
     console.log('database error: ', err);
@@ -75,16 +78,21 @@ var printJson = function printJson(obj) {
 };
 
 app.post('/api/pulse-activity', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "http://localhost");
-    res.header("Access-Control-Allow-Methods", "GET, POST");
+    // res.header("Access-Control-Allow-Origin", "http://localhost");
+    // res.header("Access-Control-Allow-Methods", "GET, POST");
 
     console.log("Rx'd a pulse activity post");
     printJson(req.body);
 
     analytics.findAndModify({
-        query: {uuid: req.body.uuid}, // query
-        update: { $set: req.body }, // replacement
-        new: true}, // options
+            query: {
+                uuid: req.body.uuid
+            }, // query
+            update: {
+                $set: req.body
+            }, // replacement
+            new: true
+        }, // options
         function(err, object, lastErrorObject) {
             if (object == undefined) {
                 console.warn('No matching object found. Making a new record.'); // returns error if no matching object found
@@ -94,14 +102,14 @@ app.post('/api/pulse-activity', function(req, res) {
                             console.log('Activity not saved to db');
                         } else {
                             console.log('Activity saved to db');
-                            activity.find(function(err, docs) {
+                            analytics.find(function(err, docs) {
                                 if (err) throw new Error(err);
                                 console.log('DOCS: ', docs);
                             });
                         }
                     });
             } else {
-                console.log("Found and updated the correct record!");
+                console.log("Found and updated the correct activity record");
                 console.log(object);
                 console.log(lastErrorObject);
             }
@@ -111,13 +119,44 @@ app.post('/api/pulse-activity', function(req, res) {
 });
 
 app.post('/api/map', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "http://localhost");
-    res.header("Access-Control-Allow-Methods", "GET, POST");
+    // res.header("Access-Control-Allow-Origin", "http://localhost");
+    // res.header("Access-Control-Allow-Methods", "GET, POST");
 
     console.log("Rx'd a map post");
     printJson(req.body);
-
     res.send(req.body);
+
+    var options = {
+        host: 'ip-api.com',
+        port: 80,
+        path: '/json/'+req.body.ipAddress,
+        method: 'GET'
+    };
+
+    var geolocationRequest = http.request(options, function(res) {
+        // console.log('STATUS: ' + res.statusCode);
+        // console.log('HEADERS: ' + JSON.stringify(res.headers));
+        res.setEncoding('utf8');
+        res.on('data', function(chunk) {
+            // console.log('Got a geo response! BODY: ' + chunk);
+            var geoData = JSON.parse(chunk);
+            pulses.push(new Pulse(geoData));
+            console.log();
+            console.log("Printing Pulses");
+            console.dir(pulses);
+
+            io.emit('pulse', JSON.stringify(pulses));
+        });
+    });
+
+    geolocationRequest.on('error', function(e) {
+        console.log('problem with request: ' + e.message);
+    });
+
+    // write data to request body
+    geolocationRequest.write('data\n');
+    geolocationRequest.write('data\n');
+    geolocationRequest.end();
 
 });
 

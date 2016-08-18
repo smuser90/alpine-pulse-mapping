@@ -27,8 +27,7 @@ var refreshMap = function() {
     map.bubbles(pulses, {
         popupTemplate: function(geo, data) {
             return ['<div class="hoverinfo">',
-                'City: ' + data.city,
-                '</br>Time: ' + data.time,
+                data.region +', '+data.country,
                 '</div>'
             ].join('');
         }
@@ -42,7 +41,9 @@ var onConnect = function(data) {
 
 var onPulse = function(data) {
     if (data) {
+        console.log('Received pulse activity data');
         pulses = JSON.parse(data);
+        console.dir(pulses);
         refreshMap();
     }
 };
@@ -74,6 +75,7 @@ post('/api/map', {
     ipAddress: JSON.parse(ipAddress).ip
 });
 
+/*
 post("api/pulse-activity", {
     uuid: 1982739781623,
     photos: 20,
@@ -82,3 +84,4 @@ post("api/pulse-activity", {
     sessions: Math.floor(Math.random() * 101),
     uptime: 589
 });
+*/
