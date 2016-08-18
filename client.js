@@ -2,8 +2,8 @@ var pulses = [];
 var ipAddress = '';
 var connected = false;
 var socket = io.connect(
-    // 'https://pulse-mapper.herokuapp.com:' + (location.port || '443')
-    'http://localhost:4200'
+    'https://pulse-mapper.herokuapp.com:' + (location.port || '443')
+    // 'http://localhost:4200'
 );
 
 var map = new Datamap({
