@@ -27,7 +27,7 @@ var refreshMap = function() {
     map.bubbles(pulses, {
         popupTemplate: function(geo, data) {
             return ['<div class="hoverinfo">',
-                data.region +', '+data.country,
+                data.region + ', ' + data.country,
                 '</div>'
             ].join('');
         }
@@ -42,9 +42,13 @@ var onConnect = function(data) {
 var onPulse = function(data) {
     if (data) {
         console.log('Received pulse activity data');
-        pulses = JSON.parse(data);
-        console.dir(pulses);
+        pulses = [];
         refreshMap();
+        setTimeout( function(){
+          pulses = JSON.parse(data);
+          console.dir(pulses);
+          refreshMap();
+        }, 200);
     }
 };
 

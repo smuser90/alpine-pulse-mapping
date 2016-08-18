@@ -18,7 +18,19 @@ var Pulse = function Pulse(pulseData) {
         radius: 2 + 1 * Math.random(),
         city: pulseData.city,
         region: pulseData.region,
-        country: pulseData.country
+        country: pulseData.country,
+        ip: pulseData.query
+    };
+};
+
+var SanitizedPulse = function SanitizedPulse(pulse) {
+    return {
+        time: pulse.time,
+        latitude: pulse.latitude,
+        longitude: pulse.longitude,
+        radius: pulse.radius,
+        region: pulse.region,
+        country: pulse.country
     };
 };
 
@@ -27,6 +39,7 @@ var activity = db.collection('activity');
 var analytics = db.collection('analytics');
 
 var pulses = [];
+var sp = [];
 
 db.on('error', function(err) {
     console.log('database error: ', err);
@@ -126,39 +139,86 @@ app.post('/api/map', function(req, res) {
     printJson(req.body);
     res.send(req.body);
 
-    var options = {
-        host: 'ip-api.com',
-        port: 80,
-        path: '/json/'+req.body.ipAddress,
-        method: 'GET'
-    };
-
-    var geolocationRequest = http.request(options, function(res) {
-        // console.log('STATUS: ' + res.statusCode);
-        // console.log('HEADERS: ' + JSON.stringify(res.headers));
-        res.setEncoding('utf8');
-        res.on('data', function(chunk) {
-            // console.log('Got a geo response! BODY: ' + chunk);
-            var geoData = JSON.parse(chunk);
-            pulses.push(new Pulse(geoData));
-            console.log();
-            console.log("Printing Pulses");
-            console.dir(pulses);
-
-            io.emit('pulse', JSON.stringify(pulses));
-        });
-    });
-
-    geolocationRequest.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
-    });
-
-    // write data to request body
-    geolocationRequest.write('data\n');
-    geolocationRequest.write('data\n');
-    geolocationRequest.end();
-
+    if(isNewIP(req.body.ipAddress)){
+      grabGeoFromIP(req);
+    }else{
+      updateTimestamp(req.body.ipAddress);
+    }
 });
+
+var isNewIP = function(ip){
+  var isNew = true;
+  var i = 0;
+  for(i;i<pulses.length;i++){
+    if(pulses[i].ip == ip){
+      isNew = false;
+      break;
+    }
+  }
+  return isNew;
+};
+
+var updateTimestamp = function(ip){
+  var i = 0;
+  for(i;i<pulses.length;i++){
+    if(pulses[i].ip == ip){
+      pulses[i].time = Date.now();
+      break;
+    }
+  }
+};
+
+var grabGeoFromIP = function(req){
+  var options = {
+      host: 'ip-api.com',
+      port: 80,
+      path: '/json/' + req.body.ipAddress,
+      method: 'GET'
+  };
+
+  var geolocationRequest = http.request(options, function(res) {
+      // console.log('STATUS: ' + res.statusCode);
+      // console.log('HEADERS: ' + JSON.stringify(res.headers));
+      res.setEncoding('utf8');
+      res.on('data', function(chunk) {
+          // console.log('Got a geo response! BODY: ' + chunk);
+          var geoData = JSON.parse(chunk);
+          var pulse = new Pulse(geoData);
+
+          updatePulseList(pulse);
+
+          var sanitizedPulses = sanitizePulses();
+          io.emit('pulse', JSON.stringify(sanitizedPulses));
+      });
+  });
+
+  geolocationRequest.on('error', function(e) {
+      console.log('problem with request: ' + e.message);
+  });
+
+  // write data to request body
+  geolocationRequest.write('data\n');
+  geolocationRequest.write('data\n');
+  geolocationRequest.end();
+};
+
+var updatePulseList = function(pulse) {
+    var i = 0;
+    var found = false;
+    for (i; i < pulses.length; i++) {
+        if (pulses[i].ip == pulse.ip) {
+            found = true;
+            // We found an existing pulse. Just update its activity time.
+            pulses[i].time = pulse.time;
+        }
+    }
+    if (!found) {
+        pulses.push(pulse);
+    }
+    console.log();
+    console.log("Printing Pulses");
+    console.dir(pulses);
+};
 
 io.on('connection', function(client) {
     var client_ip_address = client.request.connection.remoteAddress;
@@ -172,3 +232,29 @@ analytics.find(function(err, docs) {
     if (err) throw new Error(err);
     console.log('DOCS: ', docs);
 });
+
+var sanitizePulses = function() {
+    var i = 0;
+    sp = [];
+    for (i; i < pulses.length; i++) {
+        sp.push(new SanitizedPulse(pulses[i]));
+    }
+
+    return sp;
+};
+
+var cullPulses = function() {
+    var i = 0;
+    for (i; i < pulses.length; i++) {
+        if (pulses[i].time < (Date.now() - 12 * 60 * 60 * 1000)) {
+            pulses.splice(i, 1);
+        }
+    }
+
+    var sanitizedPulses = sanitizePulses();
+    io.emit('pulse', JSON.stringify(sanitizedPulses));
+};
+
+setInterval(function() {
+    cullPulses();
+}, 1000);
