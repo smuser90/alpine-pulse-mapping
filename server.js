@@ -6,8 +6,10 @@ var request = require('request');
 var mongojs = require('mongojs');
 var JSONStream = require('JSONStream');
 var bodyParser = require('body-parser');
+var path = require('path');
+var application_root = __dirname;
 
-var db = mongojs('smuser:backhand@ds017544.mlab.com:17544/pulse-activity');
+var db = mongojs(process.env.DBUSER+':'+process.env.DBPASS+'@ds017544.mlab.com:17544/pulse-activity');
 
 db.on('error', function(err){
   console.log('database error: ', err);
@@ -42,6 +44,7 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+app.use(express.static(path.join(application_root, "public")));
 
 app.get('/', function(req, res, next) {
     res.sendFile(__dirname + '/index.html');
@@ -61,14 +64,29 @@ app.get('/client.js',
 );
 
 app.post('/map', function(req, res){
-  console.log("Rx'd a map request: "+req.body.ipAddress);
-});
+  res.header("Access-Control-Allow-Origin", "http://localhost");
+  res.header("Access-Control-Allow-Methods", "GET, POST");
 
-server.listen( process.env.PORT || 4200);
+  console.log("Rx'd a map request: "+req.body.ipAddress);
+  activity.save({email: 'bs@gmail.com', password: 'backhand', username: 'Biggy', ip: req.body.ipAddress},
+       function(err, saved) { // Query in MongoDB via Mongo JS Module
+           if( err || !saved ){
+             console.log('Data not saved to db');
+           }
+           else{
+             console.log('Data saved to db');
+             activity.find(function (err, docs){
+               if(err)throw new Error(err);
+               console.log('DOCS: ', docs);
+             });
+           }
+  });
+});
 
 io.on('connection', function(client){
   var client_ip_address = client.request.connection.remoteAddress;
   console.log('Client connected.');
 });
 
+server.listen( process.env.PORT || 4200);
 console.log("Server listening on port " + (process.env.PORT || 4200));
