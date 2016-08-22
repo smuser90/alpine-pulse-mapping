@@ -220,6 +220,9 @@ var updateTimestamp = function(ip) {
 };
 
 var grabGeoFromIP = function(req) {
+
+    console.log("Grabbing geo from url: http://ip-api.com/json/",req.body.ipAddress);
+
     var options = {
         host: 'ip-api.com',
         port: 80,
