@@ -186,7 +186,7 @@ app.post('/api/pulse-map', function(req, res) {
     // res.header("Access-Control-Allow-Origin", "http://localhost");
     // res.header("Access-Control-Allow-Methods", "GET, POST");
 
-    console.log("Rx'd a map post");
+    console.log("Rx'd a map post: ", req.body.ipAddress);
     printJson(req.body);
     res.send(req.body);
 
