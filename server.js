@@ -13,6 +13,14 @@ var application_root = __dirname;
 var pulses = [];
 var sp = [];
 
+var mps = 1000;
+var hrs = 12;
+var mins = 60;
+var secs = 60;
+
+// Only live for 30 seconds
+var cullTime = 30 * mps;
+
 var Pulse = function Pulse(pulseData) {
     return {
         time: Date.now(),
@@ -276,7 +284,7 @@ var cullPulses = function() {
     var i = 0;
     var change = false;
     for (i; i < pulses.length; i++) {
-        if (pulses[i].time < (Date.now() - 12 * 60 * 60 * 1000)) {
+        if (pulses[i].time < (Date.now() - cullTime)) {
             pulses.splice(i, 1);
             change = true;
         }

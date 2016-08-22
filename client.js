@@ -76,9 +76,9 @@ var post = function post(postURL, jsonData) {
 ipAddress = Get('http://api.ipify.org/?format=json');
 console.log("Reporting IP Address to server: " + ipAddress);
 
-post('/api/pulse-map', {
-    ipAddress: JSON.parse(ipAddress).ip
-});
+// post('/api/pulse-map', {
+//     ipAddress: JSON.parse(ipAddress).ip
+// });
 
 // setTimeout(function() {
 //     post("api/pulse-analytics", {

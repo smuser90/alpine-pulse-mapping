@@ -1450,6 +1450,9 @@ Alpine Pulse Mapping	/Users/macmin/Documents/alpine-pulse-mapping/README.md	/^# 
 nts/alpine-pulse-mapping/server.js	/^var updateTimestamp = function(ip) {$/;"	function	line:203
 alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:208
 alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:211
+alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:211
+alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:211
+ar updateTimestamp = function(ip) {$/;"	function	line:204
 express	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var express = require('express');$/;"	variable	line:1
 app	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var app = express();$/;"	variable	line:2
 server	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var server = require('http').createServer(app);$/;"	variable	line:3
@@ -1463,25 +1466,44 @@ http	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var http = require
 application_root	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var application_root = __dirname;$/;"	variable	line:11
 pulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var pulses = [];$/;"	variable	line:13
 sp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sp = [];$/;"	variable	line:14
-Pulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var Pulse = function Pulse(pulseData) {$/;"	function	line:16
-Pulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var Pulse = function Pulse(pulseData) {$/;"	function	line:16
-SanitizedPulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SanitizedPulse = function SanitizedPulse(pulse) {$/;"	function	line:29
-SanitizedPulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SanitizedPulse = function SanitizedPulse(pulse) {$/;"	function	line:29
-mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var mapDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.mlab.com:17544\/pulse-activity');$/;"	variable	line:48
-analyticsDB	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var analyticsDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds013166-a0.mlab.com:13166,ds013166-a1.mlab.com:13166\/pulse-analytics?replicaSet=rs-ds013166');$/;"	variable	line:49
-analytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var analytics = analyticsDB.collection('analytics');$/;"	variable	line:50
-activity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var activity = mapDB.collection('activity');$/;"	variable	line:51
-printJson	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var printJson = function printJson(obj) {$/;"	function	line:99
-printJson	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var printJson = function printJson(obj) {$/;"	function	line:99
-cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheActivity = function() {$/;"	function	line:109
-cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheActivity = function() {$/;"	function	line:109
-cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheAnalytics = function(req) {$/;"	function	line:128
-cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheAnalytics = function(req) {$/;"	function	line:128
-isNewIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var isNewIP = function(ip) {$/;"	function	line:189
-isNewIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var isNewIP = function(ip) {$/;"	function	line:189
-updateTimestamp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updateTimestamp = function(ip) {$/;"	function	line:201
-updateTimestamp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updateTimestamp = function(ip) {$/;"	function	line:201
-grabGeoFromIP	/Users/macmin/Documents/express	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var express = require('express');$/;"	variable	line:1
+mps	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var mps = 1000;$/;"	variable	line:16
+hrs	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var hrs = 12;$/;"	variable	line:17
+mins	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var mins = 60;$/;"	variable	line:18
+secs	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var secs = 60;$/;"	variable	line:19
+cullTime	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullTime = 30 * mps;$/;"	variable	line:22
+Pulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var Pulse = function Pulse(pulseData) {$/;"	function	line:24
+Pulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var Pulse = function Pulse(pulseData) {$/;"	function	line:24
+SanitizedPulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SanitizedPulse = function SanitizedPulse(pulse) {$/;"	function	line:37
+SanitizedPulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SanitizedPulse = function SanitizedPulse(pulse) {$/;"	function	line:37
+mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var mapDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.mlab.com:17544\/pulse-activity');$/;"	variable	line:56
+analyticsDB	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var analyticsDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds013166-a0.mlab.com:13166,ds013166-a1.mlab.com:13166\/pulse-analytics?replicaSet=rs-ds013166');$/;"	variable	line:57
+analytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var analytics = analyticsDB.collection('analytics');$/;"	variable	line:58
+activity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var activity = mapDB.collection('activity');$/;"	variable	line:59
+printJson	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var printJson = function printJson(obj) {$/;"	function	line:107
+printJson	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var printJson = function printJson(obj) {$/;"	function	line:107
+cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheActivity = function() {$/;"	function	line:117
+cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheActivity = function() {$/;"	function	line:117
+cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheAnalytics = function(req) {$/;"	function	line:136
+cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheAnalytics = function(req) {$/;"	function	line:136
+isNewIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var isNewIP = function(ip) {$/;"	function	line:197
+isNewIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var isNewIP = function(ip) {$/;"	function	line:197
+updateTimestamp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updateTimestamp = function(ip) {$/;"	function	line:209
+updateTimestamp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updateTimestamp = function(ip) {$/;"	function	line:209
+grabGeoFromIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:219
+grabGeoFromIP.options.host	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^    var options = {$/;"	property	line:220
+grabGeoFromIP.options.port	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^        host: 'ip-api.com',$/;"	property	line:221
+grabGeoFromIP.options.path	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^        port: 80,$/;"	property	line:222
+grabGeoFromIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:219
+updatePulseList	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updatePulseList = function(pulse) {$/;"	function	line:253
+updatePulseList	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updatePulseList = function(pulse) {$/;"	function	line:253
+sanitizePulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sanitizePulses = function() {$/;"	function	line:273
+sanitizePulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sanitizePulses = function() {$/;"	function	line:273
+cullPulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullPulses = function() {$/;"	function	line:283
+cullPulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullPulses = function() {$/;"	function	line:283
+run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:299
+setInterval	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^    setInterval(function() {$/;"	function	line:316
+run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:299
+express	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var express = require('express');$/;"	variable	line:1
 app	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var app = express();$/;"	variable	line:2
 server	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var server = require('http').createServer(app);$/;"	variable	line:3
 io	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var io = require('socket.io')(server);$/;"	variable	line:4
@@ -1494,52 +1516,43 @@ http	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var http = require
 application_root	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var application_root = __dirname;$/;"	variable	line:11
 pulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var pulses = [];$/;"	variable	line:13
 sp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sp = [];$/;"	variable	line:14
-Pulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var Pulse = function Pulse(pulseData) {$/;"	function	line:16
-Pulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var Pulse = function Pulse(pulseData) {$/;"	function	line:16
-SanitizedPulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SanitizedPulse = function SanitizedPulse(pulse) {$/;"	function	line:29
-SanitizedPulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SanitizedPulse = function SanitizedPulse(pulse) {$/;"	function	line:29
-mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var mapDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.mlab.com:17544\/pulse-activity');$/;"	variable	line:48
-analyticsDB	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var analyticsDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds013166-a0.mlab.com:13166,ds013166-a1.mlab.com:13166\/pulse-analytics?replicaSet=rs-ds013166');$/;"	variable	line:49
-analytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var analytics = analyticsDB.collection('analytics');$/;"	variable	line:50
-activity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var activity = mapDB.collection('activity');$/;"	variable	line:51
-printJson	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var printJson = function printJson(obj) {$/;"	function	line:99
-printJson	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var printJson = function printJson(obj) {$/;"	function	line:99
-cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheActivity = function() {$/;"	function	line:109
-cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheActivity = function() {$/;"	function	line:109
-cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheAnalytics = function(req) {$/;"	function	line:128
-cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheAnalytics = function(req) {$/;"	function	line:128
-isNewIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var isNewIP = function(ip) {$/;"	function	line:189
-isNewIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var isNewIP = function(ip) {$/;"	function	line:189
-updateTimestamp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updateTimestamp = function(ip) {$/;"	function	line:201
-updateTimestamp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updateTimestamp = function(ip) {$/;"	function	line:201
-grabGeoFromIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:211
-grabGeoFromIP.options.host	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^    var options = {$/;"	property	line:212
-grabGeoFromIP.options.port	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^        host: 'ip-api.com',$/;"	property	line:213
-grabGeoFromIP.options.path	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^        port: 80,$/;"	property	line:214
-grabGeoFromIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:211
-updatePulseList	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updatePulseList = function(pulse) {$/;"	function	line:245
-updatePulseList	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updatePulseList = function(pulse) {$/;"	function	line:245
-sanitizePulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sanitizePulses = function() {$/;"	function	line:265
-sanitizePulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sanitizePulses = function() {$/;"	function	line:265
-cullPulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullPulses = function() {$/;"	function	line:275
-cullPulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullPulses = function() {$/;"	function	line:275
-run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:291
-setInterval	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^    setInterval(function() {$/;"	function	line:308
-run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:291
-alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:211
-grabGeoFromIP.options.host	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^    var options = {$/;"	property	line:212
-grabGeoFromIP.options.port	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^        host: 'ip-api.com',$/;"	property	line:213
-grabGeoFromIP.options.path	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^        port: 80,$/;"	property	line:214
-grabGeoFromIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:211
-updatePulseList	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updatePulseList = function(pulse) {$/;"	function	line:245
-updatePulseList	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updatePulseList = function(pulse) {$/;"	function	line:245
-sanitizePulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sanitizePulses = function() {$/;"	function	line:265
-sanitizePulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sanitizePulses = function() {$/;"	function	line:265
-cullPulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullPulses = function() {$/;"	function	line:275
-cullPulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullPulses = function() {$/;"	function	line:275
-run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:291
-setInterval	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^    setInterval(function() {$/;"	function	line:308
-run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:291
+mps	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var mps = 1000;$/;"	variable	line:16
+hrs	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var hrs = 12;$/;"	variable	line:17
+mins	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var mins = 60;$/;"	variable	line:18
+secs	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var secs = 60;$/;"	variable	line:19
+cullTime	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullTime = 30 * mps;$/;"	variable	line:22
+Pulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var Pulse = function Pulse(pulseData) {$/;"	function	line:24
+Pulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var Pulse = function Pulse(pulseData) {$/;"	function	line:24
+SanitizedPulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SanitizedPulse = function SanitizedPulse(pulse) {$/;"	function	line:37
+SanitizedPulse	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SanitizedPulse = function SanitizedPulse(pulse) {$/;"	function	line:37
+mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var mapDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.mlab.com:17544\/pulse-activity');$/;"	variable	line:56
+analyticsDB	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var analyticsDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds013166-a0.mlab.com:13166,ds013166-a1.mlab.com:13166\/pulse-analytics?replicaSet=rs-ds013166');$/;"	variable	line:57
+analytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var analytics = analyticsDB.collection('analytics');$/;"	variable	line:58
+activity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var activity = mapDB.collection('activity');$/;"	variable	line:59
+printJson	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var printJson = function printJson(obj) {$/;"	function	line:107
+printJson	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var printJson = function printJson(obj) {$/;"	function	line:107
+cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheActivity = function() {$/;"	function	line:117
+cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheActivity = function() {$/;"	function	line:117
+cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheAnalytics = function(req) {$/;"	function	line:136
+cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cacheAnalytics = function(req) {$/;"	function	line:136
+isNewIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var isNewIP = function(ip) {$/;"	function	line:197
+isNewIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var isNewIP = function(ip) {$/;"	function	line:197
+updateTimestamp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updateTimestamp = function(ip) {$/;"	function	line:209
+updateTimestamp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updateTimestamp = function(ip) {$/;"	function	line:209
+grabGeoFromIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:219
+grabGeoFromIP.options.host	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^    var options = {$/;"	property	line:220
+grabGeoFromIP.options.port	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^        host: 'ip-api.com',$/;"	property	line:221
+grabGeoFromIP.options.path	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^        port: 80,$/;"	property	line:222
+grabGeoFromIP	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var grabGeoFromIP = function(req) {$/;"	function	line:219
+updatePulseList	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updatePulseList = function(pulse) {$/;"	function	line:253
+updatePulseList	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var updatePulseList = function(pulse) {$/;"	function	line:253
+sanitizePulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sanitizePulses = function() {$/;"	function	line:273
+sanitizePulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sanitizePulses = function() {$/;"	function	line:273
+cullPulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullPulses = function() {$/;"	function	line:283
+cullPulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var cullPulses = function() {$/;"	function	line:283
+run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:299
+setInterval	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^    setInterval(function() {$/;"	function	line:316
+run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:299
 pulses	/Users/macmin/Documents/alpine-pulse-mapping/client.js	/^var pulses = [];$/;"	variable	line:1
 ipAddress	/Users/macmin/Documents/alpine-pulse-mapping/client.js	/^var ipAddress = '';$/;"	variable	line:2
 connected	/Users/macmin/Documents/alpine-pulse-mapping/client.js	/^var connected = false;$/;"	variable	line:3
