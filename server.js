@@ -227,6 +227,8 @@ var checkGeoCache = function(ipAddress) {
     if(err || !geoData){
       grabGeoFromIP(ipAddress);
     }else{
+      console.log("Found a cached geo record...");
+      console.dir(geoData);
       var pulse = new Pulse(geoData);
       updatePulseList(pulse);
     }
