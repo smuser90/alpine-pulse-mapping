@@ -321,7 +321,7 @@ var run = function() {
     // Every 30 seconds lets check to see if we need to drop old activity
     setInterval(function() {
         cullPulses();
-    }, 30000);
+    }, 1000);
 };
 
 run();
