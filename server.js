@@ -297,6 +297,7 @@ var cullPulses = function() {
     }
 
     if (change) {
+        cacheActivity();
         var sanitizedPulses = sanitizePulses();
         io.emit('pulse', JSON.stringify(sanitizedPulses));
     }
@@ -318,7 +319,7 @@ var run = function() {
         pulses = docs;
     });
 
-    // Every 30 seconds lets check to see if we need to drop old activity
+    // Every 1 seconds lets check to see if we need to drop old activity
     setInterval(function() {
         cullPulses();
     }, 1000);
