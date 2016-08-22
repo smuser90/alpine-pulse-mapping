@@ -190,10 +190,8 @@ app.post('/api/pulse-map', function(req, res) {
     printJson(req.body);
     res.send(req.body);
 
-    var data = JSON.parse(req.body);
-
-    if (isNewIP(data.ipAddress)) {
-        grabGeoFromIP(data.ipAddress);
+    if (isNewIP(req.body.ipAddress)) {
+        grabGeoFromIP(req.body.ipAddress);
     } else {
         updateTimestamp(req.body.ipAddress);
     }
