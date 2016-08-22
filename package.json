@@ -20,6 +20,7 @@
   "dependencies": {
     "JSONStream": "^1.1.2",
     "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
     "datamaps": "^0.5.5",
     "express": "^4.13.4",
     "geoip-lite": "^1.1.8",

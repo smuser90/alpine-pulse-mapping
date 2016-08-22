@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var http = require('http');
 var application_root = __dirname;
+var cors = require('cors');
 
 var pulses = [];
 var sp = [];
@@ -73,6 +74,8 @@ analyticsDB.on('error', function(err) {
 analyticsDB.on('connect', function() {
     console.log('activity database connected');
 });
+
+app.use(cors());
 
 app.use(express.static(__dirname + '/bower_components'));
 app.use(bodyParser.json()); // to support JSON-encoded bodies
