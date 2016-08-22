@@ -352,7 +352,7 @@ var run = function() {
     geoCache.find(function(err, docs) {
         if (err) throw new Error(err);
         console.log('GEO DOCS: ', docs);
-    })
+    });
 
     // Every 1 seconds lets check to see if we need to drop old activity
     setInterval(function() {
