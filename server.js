@@ -224,7 +224,7 @@ var updateTimestamp = function(ip) {
 
 var checkGeoCache = function(ipAddress) {
     geoCache.findOne({
-        ip: ipAddress
+        query: ipAddress
     }, function(err, geoData) {
         if (err || !geoData) {
             grabGeoFromIP(ipAddress);
