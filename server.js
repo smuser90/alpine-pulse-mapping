@@ -58,6 +58,7 @@ var mapDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.m
 var analyticsDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds013166-a0.mlab.com:13166,ds013166-a1.mlab.com:13166/pulse-analytics?replicaSet=rs-ds013166');
 var analytics = analyticsDB.collection('analytics');
 var activity = mapDB.collection('activity');
+var geoCache = mapDB.collection('geo');
 
 mapDB.on('error', function(err) {
     console.log('mapping database error: ', err);
@@ -191,7 +192,7 @@ app.post('/api/pulse-map', function(req, res) {
     res.send(req.body);
 
     if (isNewIP(req.body.ipAddress)) {
-        grabGeoFromIP(req.body.ipAddress);
+        checkGeoCache(req.body.ipAddress);
     } else {
         updateTimestamp(req.body.ipAddress);
     }
@@ -219,41 +220,65 @@ var updateTimestamp = function(ip) {
     }
 };
 
+var checkGeoCache = function(ipAddress) {
+  geoCache.findOne({
+    ip: ipAddress
+  }, function(err, geoData){
+    if(err){
+      grabGeoFromIP(ipAddress);
+    }else{
+      var pulse = new Pulse(geoData);
+      updatePulseList(pulse);
+    }
+  });
+};
+
+var saveGeoData = function(geoData){
+  geoCache.save(geoData,
+    function(err, saved){
+      if(err || !saved){
+        console.log("Geo data not saved to db");
+      } else {
+        console.log("Geo data saved to db");
+      }
+  });
+};
+
 var grabGeoFromIP = function(ip) {
+      console.log("Grabbing geo from url: http://ip-api.com/json/",ip);
 
-    console.log("Grabbing geo from url: http://ip-api.com/json/",ip);
+      var options = {
+          host: 'ip-api.com',
+          port: 80,
+          path: '/json/' + ip,
+          method: 'GET'
+      };
 
-    var options = {
-        host: 'ip-api.com',
-        port: 80,
-        path: '/json/' + ip,
-        method: 'GET'
-    };
+      var geolocationRequest = http.request(options, function(res) {
+          // console.log('STATUS: ' + res.statusCode);
+          // console.log('HEADERS: ' + JSON.stringify(res.headers));
+          res.setEncoding('utf8');
+          res.on('data', function(chunk) {
+              // console.log('Got a geo response! BODY: ' + chunk);
+              var geoData = JSON.parse(chunk);
+              saveGeoData(geoData);
 
-    var geolocationRequest = http.request(options, function(res) {
-        // console.log('STATUS: ' + res.statusCode);
-        // console.log('HEADERS: ' + JSON.stringify(res.headers));
-        res.setEncoding('utf8');
-        res.on('data', function(chunk) {
-            // console.log('Got a geo response! BODY: ' + chunk);
-            var geoData = JSON.parse(chunk);
-            var pulse = new Pulse(geoData);
+              var pulse = new Pulse(geoData);
+              updatePulseList(pulse);
 
-            updatePulseList(pulse);
+              var sanitizedPulses = sanitizePulses();
+              io.emit('pulse', JSON.stringify(sanitizedPulses));
+          });
+      });
 
-            var sanitizedPulses = sanitizePulses();
-            io.emit('pulse', JSON.stringify(sanitizedPulses));
-        });
-    });
+      geolocationRequest.on('error', function(e) {
+          console.log('problem with request: ' + e.message);
+      });
 
-    geolocationRequest.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
-    });
-
-    // write data to request body
-    geolocationRequest.write('data\n');
-    geolocationRequest.write('data\n');
-    geolocationRequest.end();
+      // write data to request body
+      geolocationRequest.write('data\n');
+      geolocationRequest.write('data\n');
+      geolocationRequest.end();
 };
 
 var updatePulseList = function(pulse) {
