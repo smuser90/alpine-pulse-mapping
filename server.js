@@ -20,7 +20,7 @@ var mins = 60;
 var secs = 60;
 
 // Only live for 30 seconds
-var cullTime = 30 * mps;
+var cullTime = 5 * mps;
 
 var Pulse = function Pulse(pulseData) {
     return {
