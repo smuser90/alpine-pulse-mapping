@@ -10,6 +10,9 @@ var path = require('path');
 var http = require('http');
 var application_root = __dirname;
 
+var pulses = [];
+var sp = [];
+
 var Pulse = function Pulse(pulseData) {
     return {
         time: Date.now(),
@@ -34,20 +37,33 @@ var SanitizedPulse = function SanitizedPulse(pulse) {
     };
 };
 
-var db = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.mlab.com:17544/pulse-activity');
-var activity = db.collection('activity');
-var analytics = db.collection('analytics');
+io.on('connection', function(client) {
+    var client_ip_address = client.request.connection.remoteAddress;
+    console.log('Client connected: ', client_ip_address);
 
-var pulses = [];
-var sp = [];
-
-db.on('error', function(err) {
-    console.log('database error: ', err);
-
+    var sanitizedPulses = sanitizePulses();
+    client.emit('pulse', JSON.stringify(sanitizedPulses));
 });
 
-db.on('connect', function() {
-    console.log('database connected');
+var mapDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.mlab.com:17544/pulse-activity');
+var analyticsDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds013166-a0.mlab.com:13166,ds013166-a1.mlab.com:13166/pulse-analytics?replicaSet=rs-ds013166');
+var analytics = analyticsDB.collection('analytics');
+var activity = mapDB.collection('activity');
+
+mapDB.on('error', function(err) {
+    console.log('mapping database error: ', err);
+});
+
+mapDB.on('connect', function() {
+    console.log('mapping database connected');
+});
+
+analyticsDB.on('error', function(err) {
+    console.log('activity database error: ', err);
+});
+
+analyticsDB.on('connect', function() {
+    console.log('activity database connected');
 });
 
 app.use(express.static(__dirname + '/bower_components'));
@@ -90,13 +106,27 @@ var printJson = function printJson(obj) {
     }
 };
 
-app.post('/api/pulse-activity', function(req, res) {
-    // res.header("Access-Control-Allow-Origin", "http://localhost");
-    // res.header("Access-Control-Allow-Methods", "GET, POST");
+var cacheActivity = function() {
+    console.log("Caching Activity to MongoDB");
+    activity.remove({}, function(err, status) {
+        activity.save(pulses,
+            function(err, saved) { // Query in MongoDB via Mongo JS Module
+                if (err || !saved) {
+                    console.log('Activity not saved to db');
+                } else {
+                    console.log('Activity saved to db');
+                    activity.find(function(err, docs) {
+                        if (err) throw new Error(err);
+                        console.log('Activity DOCS: ', docs);
+                        pulses = docs;
+                    });
+                }
+            });
+    });
+};
 
-    console.log("Rx'd a pulse activity post");
-    printJson(req.body);
-
+var cacheAnalytics = function(req) {
+    console.log("Caching Analytics to MongoDB");
     analytics.findAndModify({
             query: {
                 uuid: req.body.uuid
@@ -112,9 +142,9 @@ app.post('/api/pulse-activity', function(req, res) {
                 analytics.save(req.body,
                     function(err, saved) { // Query in MongoDB via Mongo JS Module
                         if (err || !saved) {
-                            console.log('Activity not saved to db');
+                            console.log('Analytics not saved to db');
                         } else {
-                            console.log('Activity saved to db');
+                            console.log('Analytics saved to db');
                             analytics.find(function(err, docs) {
                                 if (err) throw new Error(err);
                                 console.log('DOCS: ', docs);
@@ -122,16 +152,26 @@ app.post('/api/pulse-activity', function(req, res) {
                         }
                     });
             } else {
-                console.log("Found and updated the correct activity record");
+                console.log("Found and updated the correct analytics record");
                 console.log(object);
                 console.log(lastErrorObject);
             }
         });
+};
+
+app.post('/api/pulse-analytics', function(req, res) {
+    // res.header("Access-Control-Allow-Origin", "http://localhost");
+    // res.header("Access-Control-Allow-Methods", "GET, POST");
+
+    console.log("Rx'd a pulse activity post");
+    printJson(req.body);
+
+    cacheAnalytics(req);
 
     res.send(req.body);
 });
 
-app.post('/api/map', function(req, res) {
+app.post('/api/pulse-map', function(req, res) {
     // res.header("Access-Control-Allow-Origin", "http://localhost");
     // res.header("Access-Control-Allow-Methods", "GET, POST");
 
@@ -139,67 +179,67 @@ app.post('/api/map', function(req, res) {
     printJson(req.body);
     res.send(req.body);
 
-    if(isNewIP(req.body.ipAddress)){
-      grabGeoFromIP(req);
-    }else{
-      updateTimestamp(req.body.ipAddress);
+    if (isNewIP(req.body.ipAddress)) {
+        grabGeoFromIP(req);
+    } else {
+        updateTimestamp(req.body.ipAddress);
     }
 });
 
-var isNewIP = function(ip){
-  var isNew = true;
-  var i = 0;
-  for(i;i<pulses.length;i++){
-    if(pulses[i].ip == ip){
-      isNew = false;
-      break;
+var isNewIP = function(ip) {
+    var isNew = true;
+    var i = 0;
+    for (i; i < pulses.length; i++) {
+        if (pulses[i].ip == ip) {
+            isNew = false;
+            break;
+        }
     }
-  }
-  return isNew;
+    return isNew;
 };
 
-var updateTimestamp = function(ip){
-  var i = 0;
-  for(i;i<pulses.length;i++){
-    if(pulses[i].ip == ip){
-      pulses[i].time = Date.now();
-      break;
+var updateTimestamp = function(ip) {
+    var i = 0;
+    for (i; i < pulses.length; i++) {
+        if (pulses[i].ip == ip) {
+            pulses[i].time = Date.now();
+            break;
+        }
     }
-  }
 };
 
-var grabGeoFromIP = function(req){
-  var options = {
-      host: 'ip-api.com',
-      port: 80,
-      path: '/json/' + req.body.ipAddress,
-      method: 'GET'
-  };
+var grabGeoFromIP = function(req) {
+    var options = {
+        host: 'ip-api.com',
+        port: 80,
+        path: '/json/' + req.body.ipAddress,
+        method: 'GET'
+    };
 
-  var geolocationRequest = http.request(options, function(res) {
-      // console.log('STATUS: ' + res.statusCode);
-      // console.log('HEADERS: ' + JSON.stringify(res.headers));
-      res.setEncoding('utf8');
-      res.on('data', function(chunk) {
-          // console.log('Got a geo response! BODY: ' + chunk);
-          var geoData = JSON.parse(chunk);
-          var pulse = new Pulse(geoData);
+    var geolocationRequest = http.request(options, function(res) {
+        // console.log('STATUS: ' + res.statusCode);
+        // console.log('HEADERS: ' + JSON.stringify(res.headers));
+        res.setEncoding('utf8');
+        res.on('data', function(chunk) {
+            // console.log('Got a geo response! BODY: ' + chunk);
+            var geoData = JSON.parse(chunk);
+            var pulse = new Pulse(geoData);
 
-          updatePulseList(pulse);
+            updatePulseList(pulse);
 
-          var sanitizedPulses = sanitizePulses();
-          io.emit('pulse', JSON.stringify(sanitizedPulses));
-      });
-  });
+            var sanitizedPulses = sanitizePulses();
+            io.emit('pulse', JSON.stringify(sanitizedPulses));
+        });
+    });
 
-  geolocationRequest.on('error', function(e) {
-      console.log('problem with request: ' + e.message);
-  });
+    geolocationRequest.on('error', function(e) {
+        console.log('problem with request: ' + e.message);
+    });
 
-  // write data to request body
-  geolocationRequest.write('data\n');
-  geolocationRequest.write('data\n');
-  geolocationRequest.end();
+    // write data to request body
+    geolocationRequest.write('data\n');
+    geolocationRequest.write('data\n');
+    geolocationRequest.end();
 };
 
 var updatePulseList = function(pulse) {
@@ -212,26 +252,15 @@ var updatePulseList = function(pulse) {
             pulses[i].time = pulse.time;
         }
     }
+
     if (!found) {
         pulses.push(pulse);
+        cacheActivity();
     }
     console.log();
     console.log("Printing Pulses");
     console.dir(pulses);
 };
-
-io.on('connection', function(client) {
-    var client_ip_address = client.request.connection.remoteAddress;
-    console.log('Client connected.');
-});
-
-server.listen(process.env.PORT || 4200);
-console.log("Server listening on port " + (process.env.PORT || 4200));
-
-analytics.find(function(err, docs) {
-    if (err) throw new Error(err);
-    console.log('DOCS: ', docs);
-});
 
 var sanitizePulses = function() {
     var i = 0;
@@ -245,16 +274,40 @@ var sanitizePulses = function() {
 
 var cullPulses = function() {
     var i = 0;
+    var change = false;
     for (i; i < pulses.length; i++) {
         if (pulses[i].time < (Date.now() - 12 * 60 * 60 * 1000)) {
             pulses.splice(i, 1);
+            change = true;
         }
     }
 
-    var sanitizedPulses = sanitizePulses();
-    io.emit('pulse', JSON.stringify(sanitizedPulses));
+    if (change) {
+        var sanitizedPulses = sanitizePulses();
+        io.emit('pulse', JSON.stringify(sanitizedPulses));
+    }
 };
 
-setInterval(function() {
-    cullPulses();
-}, 1000);
+var run = function() {
+
+    server.listen(process.env.PORT || 4200);
+    console.log("Server listening on port " + (process.env.PORT || 4200));
+
+    analytics.find(function(err, docs) {
+        if (err) throw new Error(err);
+        console.log('ANALYTICS DOCS: ', docs);
+    });
+
+    activity.find(function(err, docs) {
+        if (err) throw new Error(err);
+        console.log('MAPPING DOCS: ', docs);
+        pulses = docs;
+    });
+
+    // Every 30 seconds lets check to see if we need to drop old activity
+    setInterval(function() {
+        cullPulses();
+    }, 30000);
+};
+
+run();

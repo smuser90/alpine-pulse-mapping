@@ -2,8 +2,8 @@ var pulses = [];
 var ipAddress = '';
 var connected = false;
 var socket = io.connect(
-    'https://pulse-mapper.herokuapp.com:' + (location.port || '443')
-    // 'http://localhost:4200'
+    // 'https://pulse-mapper.herokuapp.com:' + (location.port || '443')
+    'http://localhost:4200'
 );
 
 var map = new Datamap({
@@ -44,10 +44,10 @@ var onPulse = function(data) {
         console.log('Received pulse activity data');
         pulses = [];
         refreshMap();
-        setTimeout( function(){
-          pulses = JSON.parse(data);
-          console.dir(pulses);
-          refreshMap();
+        setTimeout(function() {
+            pulses = JSON.parse(data);
+            console.dir(pulses);
+            refreshMap();
         }, 200);
     }
 };
@@ -55,6 +55,7 @@ var onPulse = function(data) {
 socket.on('connect', onConnect);
 
 socket.on('pulse', onPulse);
+
 
 var Get = function Get(yourUrl) {
     var Httpreq = new XMLHttpRequest(); // a new request
@@ -75,17 +76,17 @@ var post = function post(postURL, jsonData) {
 ipAddress = Get('http://api.ipify.org/?format=json');
 console.log("Reporting IP Address to server: " + ipAddress);
 
-post('/api/map', {
+post('/api/pulse-map', {
     ipAddress: JSON.parse(ipAddress).ip
 });
 
-/*
-post("api/pulse-activity", {
-    uuid: 1982739781623,
-    photos: 20,
-    videos: 100,
-    timelapses: 37,
-    sessions: Math.floor(Math.random() * 101),
-    uptime: 589
-});
-*/
+// setTimeout(function() {
+//     post("api/pulse-analytics", {
+//         uuid: 1982739781623,
+//         photos: 20,
+//         videos: 100,
+//         timelapses: 37,
+//         sessions: Math.floor(Math.random() * 101),
+//         uptime: 589
+//     });
+// }, 5000);
