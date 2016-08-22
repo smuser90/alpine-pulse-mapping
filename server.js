@@ -224,7 +224,7 @@ var checkGeoCache = function(ipAddress) {
   geoCache.findOne({
     ip: ipAddress
   }, function(err, geoData){
-    if(err){
+    if(err || !geoData){
       grabGeoFromIP(ipAddress);
     }else{
       var pulse = new Pulse(geoData);
