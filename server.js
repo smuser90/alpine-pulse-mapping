@@ -270,9 +270,6 @@ var grabGeoFromIP = function(ip) {
 
             var pulse = new Pulse(geoData);
             updatePulseList(pulse);
-
-            var sanitizedPulses = sanitizePulses();
-            io.emit('pulse', JSON.stringify(sanitizedPulses));
         });
     });
 
@@ -302,8 +299,11 @@ var updatePulseList = function(pulse) {
         cacheActivity();
     }
     console.log();
-    console.log("Printing Pulses");
+    console.log("Pulse List Updated...");
     console.dir(pulses);
+
+    var sanitizedPulses = sanitizePulses();
+    io.emit('pulse', JSON.stringify(sanitizedPulses));
 };
 
 var sanitizePulses = function() {
