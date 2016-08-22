@@ -190,8 +190,10 @@ app.post('/api/pulse-map', function(req, res) {
     printJson(req.body);
     res.send(req.body);
 
-    if (isNewIP(req.body.ipAddress)) {
-        grabGeoFromIP(req);
+    var data = JSON.parse(req.body);
+
+    if (isNewIP(data.ipAddress)) {
+        grabGeoFromIP(data.ipAddress);
     } else {
         updateTimestamp(req.body.ipAddress);
     }
@@ -219,14 +221,14 @@ var updateTimestamp = function(ip) {
     }
 };
 
-var grabGeoFromIP = function(req) {
+var grabGeoFromIP = function(ip) {
 
-    console.log("Grabbing geo from url: http://ip-api.com/json/",req.body.ipAddress);
+    console.log("Grabbing geo from url: http://ip-api.com/json/",ip);
 
     var options = {
         host: 'ip-api.com',
         port: 80,
-        path: '/json/' + req.body.ipAddress,
+        path: '/json/' + ip,
         method: 'GET'
     };
 
