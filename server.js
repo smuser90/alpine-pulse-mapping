@@ -250,7 +250,7 @@ var saveGeoData = function(geoData) {
 };
 
 var grabGeoFromIP = function(ip) {
-    console.log("Grabbing geo from url: http://ip-api.com/json/", ip);
+    console.log("Grabbing geo from url: http://ip-api.com/json/"+ip);
 
     var options = {
         host: 'ip-api.com',
