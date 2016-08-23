@@ -22,16 +22,16 @@ var secs = 60;
 // Only live for 30 seconds
 var cullTime = 5 * mps;
 
-var Pulse = function Pulse(pulseData) {
+var Pulse = function Pulse(geoData) {
     return {
         time: Date.now(),
-        latitude: pulseData.lat,
-        longitude: pulseData.lon,
+        latitude: geoData.latitude,
+        longitude: geoData.longitude,
         radius: 2 + 1 * Math.random(),
-        city: pulseData.city,
-        region: pulseData.region,
-        country: pulseData.country,
-        ip: pulseData.query
+        city: geoData.city,
+        region: geoData.region_code,
+        country: geoData.country_name,
+        ip: geoData.ip
     };
 };
 
@@ -224,7 +224,7 @@ var updateTimestamp = function(ip) {
 
 var checkGeoCache = function(ipAddress) {
     geoCache.findOne({
-        query: ipAddress
+        ip: ipAddress
     }, function(err, geoData) {
         if (err || !geoData) {
             grabGeoFromIP(ipAddress);
@@ -253,7 +253,7 @@ var grabGeoFromIP = function(ip) {
     console.log("Grabbing geo from url: http://ip-api.com/json/"+ip);
 
     var options = {
-        host: 'ip-api.com',
+        host: 'freegeoip.net',
         port: 80,
         path: '/json/' + ip,
         method: 'GET'
@@ -265,6 +265,7 @@ var grabGeoFromIP = function(ip) {
         res.setEncoding('utf8');
         res.on('data', function(chunk) {
             // console.log('Got a geo response! BODY: ' + chunk);
+
             var geoData = JSON.parse(chunk);
             saveGeoData(geoData);
 
