@@ -11,40 +11,16 @@ var http = require('http');
 var application_root = __dirname;
 var cors = require('cors');
 
-var pulses = [];
-var sp = [];
+var pulses = []; // Full data objects for internal use
+var sp = []; // Sanitized data for public display
 
 var mps = 1000;
 var hrs = 12;
 var mins = 60;
 var secs = 60;
 
-// Only live for 30 seconds
+// Only live for 5 seconds
 var cullTime = 5 * mps;
-
-var Pulse = function Pulse(geoData) {
-    return {
-        time: Date.now(),
-        latitude: geoData.latitude,
-        longitude: geoData.longitude,
-        radius: 2 + 1 * Math.random(),
-        city: geoData.city,
-        region: geoData.region_code,
-        country: geoData.country_name,
-        ip: geoData.ip
-    };
-};
-
-var SanitizedPulse = function SanitizedPulse(pulse) {
-    return {
-        time: pulse.time,
-        latitude: pulse.latitude,
-        longitude: pulse.longitude,
-        radius: pulse.radius,
-        region: pulse.region,
-        country: pulse.country
-    };
-};
 
 io.on('connection', function(client) {
     var client_ip_address = client.request.connection.remoteAddress;
@@ -108,6 +84,49 @@ app.get('/app.js',
     }
 );
 
+app.post('/api/pulse-analytics', function(req, res) {
+    console.log("Rx'd a pulse analytics post");
+    res.send(req.body);
+
+    cacheAnalytics(req);
+});
+
+app.post('/api/pulse-map', function(req, res) {
+    console.log("Rx'd a map post: ", req.body.ipAddress);
+    printJson(req.body);
+    res.send(req.body);
+
+    if (isNewIP(req.body.ipAddress)) {
+        checkGeoCache(req.body.ipAddress);
+    } else {
+        updateTimestamp(req.body.ipAddress);
+    }
+});
+
+var Pulse = function Pulse(geoData) {
+    return {
+        time: Date.now(),
+        latitude: geoData.latitude,
+        longitude: geoData.longitude,
+        radius: 2 + 1 * Math.random(),
+        city: geoData.city,
+        region: geoData.region_code,
+        country: geoData.country_name,
+        ip: geoData.ip
+    };
+};
+
+var SanitizedPulse = function SanitizedPulse(pulse) {
+    return {
+        time: pulse.time,
+        latitude: pulse.latitude,
+        longitude: pulse.longitude,
+        radius: pulse.radius,
+        region: pulse.region,
+        country: pulse.country
+    };
+};
+
 var printJson = function printJson(obj) {
     for (var key in obj) {
         if (typeof(obj[key]) == 'object') {
@@ -128,11 +147,6 @@ var cacheActivity = function() {
                         console.log('Activity not saved to db');
                     } else {
                         console.log('Activity saved to db');
-                        activity.find(function(err, docs) {
-                            if (err) throw new Error(err);
-                            console.log('Activity DOCS: ', docs);
-                            pulses = docs;
-                        });
                     }
                 });
         }
@@ -159,10 +173,6 @@ var cacheAnalytics = function(req) {
                             console.log('Analytics not saved to db');
                         } else {
                             console.log('Analytics saved to db');
-                            analytics.find(function(err, docs) {
-                                if (err) throw new Error(err);
-                                console.log('DOCS: ', docs);
-                            });
                         }
                     });
             } else {
@@ -172,33 +182,6 @@ var cacheAnalytics = function(req) {
             }
         });
 };
-
-app.post('/api/pulse-analytics', function(req, res) {
-    // res.header("Access-Control-Allow-Origin", "http://localhost");
-    // res.header("Access-Control-Allow-Methods", "GET, POST");
-
-    console.log("Rx'd a pulse activity post");
-    printJson(req.body);
-
-    cacheAnalytics(req);
-
-    res.send(req.body);
-});
-
-app.post('/api/pulse-map', function(req, res) {
-    // res.header("Access-Control-Allow-Origin", "http://localhost");
-    // res.header("Access-Control-Allow-Methods", "GET, POST");
-
-    console.log("Rx'd a map post: ", req.body.ipAddress);
-    printJson(req.body);
-    res.send(req.body);
-
-    if (isNewIP(req.body.ipAddress)) {
-        checkGeoCache(req.body.ipAddress);
-    } else {
-        updateTimestamp(req.body.ipAddress);
-    }
-});
 
 var isNewIP = function(ip) {
     var isNew = true;
