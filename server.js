@@ -78,9 +78,76 @@ app.get('/client.js',
         res.sendFile(__dirname + '/client.js');
     }
 );
+
 app.get('/app.js',
     function(req, res, next) {
         res.sendFile(__dirname + '/app.js');
+    }
+);
+
+app.get('/api/photos',
+    function(req, res, next){
+      analytics.aggregate([{$group: {_id: null, photos: {$sum: "$photos"}}}],
+        {}, // no options
+        function(err, data){
+          res.json({photos: data[0].photos});
+        }
+      );
+    }
+);
+
+app.get('/api/videos',
+    function(req, res, next){
+      analytics.aggregate([{$group: {_id: null, videos: {$sum: "$videos"}}}],
+        {}, // no options
+        function(err, data){
+          res.json({videos: data[0].videos});
+        }
+      );
+    }
+);
+
+app.get('/api/timelapses',
+    function(req, res, next){
+      analytics.aggregate([{$group: {_id: null, timelapses: {$sum: "$timelapses"}}}],
+        {}, // no options
+        function(err, data){
+          res.json({timelapses: data[0].timelapses});
+        }
+      );
+    }
+);
+
+app.get('/api/sessions',
+    function(req, res, next){
+      analytics.aggregate([{$group: {_id: null, sessions: {$sum: "$sessions"}}}],
+        {}, // no options
+        function(err, data){
+          res.json({sessions: data[0].sessions});
+        }
+      );
+    }
+);
+
+app.get('/api/uptime',
+    function(req, res, next){
+      analytics.aggregate([{$group: {_id: null, uptime: {$sum: "$uptime"}}}],
+        {}, // no options
+        function(err, data){
+          res.json({uptime: data[0].uptime});
+        }
+      );
+    }
+);
+
+app.get('/api/thumbnails',
+    function(req, res, next){
+      analytics.aggregate([{$group: {_id: null, thumbnails: {$sum: "$thumbnails"}}}],
+        {}, // no options
+        function(err, data){
+          res.json({thumbnails: data[0].thumbnails});
+        }
+      );
     }
 );
 
