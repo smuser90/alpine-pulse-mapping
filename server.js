@@ -31,10 +31,10 @@ io.on('connection', function(client) {
 });
 
 var mapDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.mlab.com:17544/pulse-activity');
-var analyticsDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds013166-a0.mlab.com:13166,ds013166-a1.mlab.com:13166/pulse-analytics?replicaSet=rs-ds013166');
-var analytics = analyticsDB.collection('analytics');
+var persistenceDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds013166-a0.mlab.com:13166,ds013166-a1.mlab.com:13166/pulse-analytics?replicaSet=rs-ds013166');
+var analytics = persistenceDB.collection('analytics');
 var activity = mapDB.collection('activity');
-var geoCache = mapDB.collection('geo');
+var geoCache = persistenceDB.collection('geo');
 
 mapDB.on('error', function(err) {
     console.log('mapping database error: ', err);
@@ -44,11 +44,11 @@ mapDB.on('connect', function() {
     console.log('mapping database connected');
 });
 
-analyticsDB.on('error', function(err) {
+persistenceDB.on('error', function(err) {
     console.log('activity database error: ', err);
 });
 
-analyticsDB.on('connect', function() {
+persistenceDB.on('connect', function() {
     console.log('activity database connected');
 });
 
