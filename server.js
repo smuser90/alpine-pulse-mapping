@@ -14,21 +14,29 @@ var cors = require('cors');
 var aggregates = {};
 var pulses = []; // Full data objects for internal use
 var sp = []; // Sanitized data for public display
+var openSockets = 0;
 
-var mps = 1000;
-var hrs = 12;
-var mins = 60;
-var secs = 60;
+var SOCKET_LIMIT = 6000;
+var MPS = 1000;
+var HRS = 12;
+var MINS = 60;
+var SECS = 60;
 
 // Only live for 12 hours
-var cullTime = hrs * mins * secs * mps;
+var cullTime = HRS * MINS * SECS * MPS;
 
 io.on('connection', function(client) {
-    var client_ip_address = client.request.connection.remoteAddress;
-    console.log('Client connected: ', client_ip_address);
+  var sanitizedPulses = sanitizePulses();
+  client.emit('pulse', JSON.stringify(sanitizedPulses));
 
-    var sanitizedPulses = sanitizePulses();
-    client.emit('pulse', JSON.stringify(sanitizedPulses));
+  if(openSockets < SOCKET_LIMIT){
+    openSockets++;
+    client.on('disconnect', function(){
+      openSockets--;
+    });
+  }else{
+    client.disconnect();
+  }
 });
 
 var mapDB = mongojs(process.env.DBUSER + ':' + process.env.DBPASS + '@ds017544.mlab.com:17544/pulse-activity');
@@ -131,6 +139,14 @@ app.get('/api/thumbnails',
         res.json({
             thumbnails: aggregates.thumbnails
         });
+    }
+);
+
+app.get('/api/connections',
+    function(req, res, next) {
+        res.json(
+          {connections: openSockets}
+        );
     }
 );
 
