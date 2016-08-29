@@ -11,6 +11,7 @@ var http = require('http');
 var application_root = __dirname;
 var cors = require('cors');
 
+var aggregates = {};
 var pulses = []; // Full data objects for internal use
 var sp = []; // Sanitized data for public display
 
@@ -19,8 +20,8 @@ var hrs = 12;
 var mins = 60;
 var secs = 60;
 
-// Only live for 5 seconds
-var cullTime = 5 * mps;
+// Only live for 12 hours
+var cullTime = hrs * mins * secs * mps;
 
 io.on('connection', function(client) {
     var client_ip_address = client.request.connection.remoteAddress;
@@ -86,68 +87,50 @@ app.get('/app.js',
 );
 
 app.get('/api/photos',
-    function(req, res, next){
-      analytics.aggregate([{$group: {_id: null, photos: {$sum: "$photos"}}}],
-        {}, // no options
-        function(err, data){
-          res.json({photos: data[0].photos});
-        }
-      );
+    function(req, res, next) {
+        res.json({
+            photos: aggregates.photos
+        });
     }
 );
 
 app.get('/api/videos',
-    function(req, res, next){
-      analytics.aggregate([{$group: {_id: null, videos: {$sum: "$videos"}}}],
-        {}, // no options
-        function(err, data){
-          res.json({videos: data[0].videos});
-        }
-      );
+    function(req, res, next) {
+        res.json({
+            videos: aggregates.videos
+        });
     }
 );
 
 app.get('/api/timelapses',
-    function(req, res, next){
-      analytics.aggregate([{$group: {_id: null, timelapses: {$sum: "$timelapses"}}}],
-        {}, // no options
-        function(err, data){
-          res.json({timelapses: data[0].timelapses});
-        }
-      );
+    function(req, res, next) {
+        res.json({
+            timelapses: aggregates.timelapses
+        });
     }
 );
 
 app.get('/api/sessions',
-    function(req, res, next){
-      analytics.aggregate([{$group: {_id: null, sessions: {$sum: "$sessions"}}}],
-        {}, // no options
-        function(err, data){
-          res.json({sessions: data[0].sessions});
-        }
-      );
+    function(req, res, next) {
+        res.json({
+            sessions: aggregates.sessions
+        });
     }
 );
 
 app.get('/api/uptime',
-    function(req, res, next){
-      analytics.aggregate([{$group: {_id: null, uptime: {$sum: "$uptime"}}}],
-        {}, // no options
-        function(err, data){
-          res.json({uptime: data[0].uptime});
-        }
-      );
+    function(req, res, next) {
+        res.json({
+            uptime: aggregates.uptime
+        });
     }
 );
 
 app.get('/api/thumbnails',
-    function(req, res, next){
-      analytics.aggregate([{$group: {_id: null, thumbnails: {$sum: "$thumbnails"}}}],
-        {}, // no options
-        function(err, data){
-          res.json({thumbnails: data[0].thumbnails});
-        }
-      );
+    function(req, res, next) {
+        res.json({
+            thumbnails: aggregates.thumbnails
+        });
     }
 );
 
@@ -300,7 +283,7 @@ var saveGeoData = function(geoData) {
 };
 
 var grabGeoFromIP = function(ip) {
-    console.log("Grabbing geo from url: http://ip-api.com/json/"+ip);
+    console.log("Grabbing geo from url: http://ip-api.com/json/" + ip);
 
     var options = {
         host: 'freegeoip.net',
@@ -384,6 +367,91 @@ var cullPulses = function() {
     }
 };
 
+var refreshAggregates = function() {
+    analytics.aggregate([{
+            $group: {
+                _id: null,
+                photos: {
+                    $sum: "$photos"
+                }
+            }
+        }], {}, // no options
+        function(err, data) {
+            aggregates.photos = data[0].photos;
+        }
+    );
+
+    analytics.aggregate([{
+            $group: {
+                _id: null,
+                videos: {
+                    $sum: "$videos"
+                }
+            }
+        }], {}, // no options
+        function(err, data) {
+            aggregates.videos = data[0].videos;
+        }
+    );
+
+    analytics.aggregate([{
+            $group: {
+                _id: null,
+                timelapses: {
+                    $sum: "$timelapses"
+                }
+            }
+        }], {}, // no options
+        function(err, data) {
+            aggregates.timelapses = data[0].timelapses;
+        }
+    );
+
+    analytics.aggregate([{
+            $group: {
+                _id: null,
+                sessions: {
+                    $sum: "$sessions"
+                }
+            }
+        }], {}, // no options
+        function(err, data) {
+            aggregates.sessions = data[0].sessions;
+        }
+    );
+
+    analytics.aggregate([{
+            $group: {
+                _id: null,
+                uptime: {
+                    $sum: "$uptime"
+                }
+            }
+        }], {}, // no options
+        function(err, data) {
+            aggregates.uptime = data[0].uptime;
+        }
+    );
+
+    analytics.aggregate([{
+            $group: {
+                _id: null,
+                thumbnails: {
+                    $sum: "$thumbnails"
+                }
+            }
+        }], {}, // no options
+        function(err, data) {
+            aggregates.thumbnails = data[0].thumbnails;
+        }
+    );
+};
+
+var serverTick = function() {
+    cullPulses();
+    refreshAggregates();
+};
+
 var run = function() {
 
     server.listen(process.env.PORT || 4200);
@@ -405,10 +473,10 @@ var run = function() {
         console.log('GEO DOCS: ', docs);
     });
 
-    // Every 1 seconds lets check to see if we need to drop old activity
-    setInterval(function() {
-        cullPulses();
-    }, 1000);
+    refreshAggregates();
+
+    // Every 30 seconds lets tick
+    setInterval(serverTick, 30000);
 };
 
 run();
