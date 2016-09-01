@@ -56,26 +56,6 @@ socket.on('connect', onConnect);
 
 socket.on('pulse', onPulse);
 
-
-var Get = function Get(yourUrl) {
-    var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET", yourUrl, false);
-    Httpreq.send(null);
-    return Httpreq.responseText;
-};
-
-var post = function post(postURL, jsonData) {
-    $.ajax({
-        type: "POST",
-        data: JSON.stringify(jsonData),
-        url: postURL,
-        contentType: "application/json"
-    });
-};
-
-ipAddress = Get('http://api.ipify.org/?format=json');
-console.log("Reporting IP Address to server: " + ipAddress);
-
 // post('/api/pulse-map', {
 //     ipAddress: JSON.parse(ipAddress).ip
 // });
