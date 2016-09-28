@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 module.exports = {
   thisApp: app,
   setupRoutes: function(cacheAnalytics, isNewIP, checkGeoCache,
-                        updateTimestamp, aggregates){
+                        updateTimestamp, updatePulseList, aggregates){
     app.use(cors());
 
     app.use(express.static(__dirname + '/bower_components'));
@@ -20,26 +20,26 @@ module.exports = {
     app.use(express.static(path.join(application_root, "public")));
 
     app.get('/', function(req, res, next) {
-        res.sendFile(__dirname + '/index.html');
+        res.sendFile(path.resolve(__dirname + '/index.html'));
     });
     app.get('/app', function(req, res, next) {
-        res.sendFile(__dirname + '/app.html');
+        res.sendFile(path.resolve(__dirname + '/app.html'));
     });
     app.get(
         '/node_modules/datamaps/dist/datamaps.world.min.js',
         function(req, res, next) {
-            res.sendFile(__dirname + '/node_modules/datamaps/dist/datamaps.world.min.js');
+            res.sendFile(path.resolve(__dirname + '/../node_modules/datamaps/dist/datamaps.world.min.js'));
         }
     );
     app.get('/client.js',
         function(req, res, next) {
-            res.sendFile(__dirname + '/client.js');
+            res.sendFile(path.resolve(__dirname + '/client.js'));
         }
     );
 
     app.get('/app.js',
         function(req, res, next) {
-            res.sendFile(__dirname + '/app.js');
+            res.sendFile(path.resolve(__dirname + '/app.js'));
         }
     );
 
@@ -108,11 +108,10 @@ module.exports = {
 
     app.post('/api/pulse-map', function(req, res) {
         console.log("Rx'd a map post: ", req.body.ipAddress);
-        printJson(req.body);
         res.send(req.body);
 
         if (isNewIP(req.body.ipAddress)) {
-            checkGeoCache(req.body.ipAddress);
+            checkGeoCache(req.body.ipAddress, updatePulseList);
         } else {
             updateTimestamp(req.body.ipAddress);
         }
