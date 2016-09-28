@@ -6,8 +6,8 @@ module.exports = {
         longitude: geoData.longitude,
         radius: 2 + 1 * Math.random(),
         city: geoData.city,
-        region: geoData.region_code,
-        country: geoData.country_name,
+        region: geoData.region_code ? geoData.region_code : geoData.region,
+        country: geoData.country_name ? geoData.country_name : geoData.country,
         ip: geoData.ip
     };
   },

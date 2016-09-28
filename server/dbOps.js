@@ -2,19 +2,18 @@ var mapDB,
 persistenceDB,
 analytics,
 activity,
-geoCache;
-
+geoCache,
+Pulse;
 
 module.exports = {
+    setupDBs: function(_mapDB, _persistenceDB, _Pulse){
 
-
-    setupDBs: function(_mapDB, _persistenceDB){
-
+      Pulse = _Pulse;
       mapDB = _mapDB;
       persistenceDB = _persistenceDB;
       analytics = persistenceDB.collection('analytics');
-      activity = mapDB.collection('activity');
       geoCache = persistenceDB.collection('geo');
+      activity = mapDB.collection('activity');
 
       mapDB.on('error', function(err) {
           console.log('mapping database error: ', err);
@@ -47,6 +46,21 @@ module.exports = {
                     });
             }
         });
+    },
+
+    loadActivity: function(pulses) {
+      console.log("Loading activity from db");
+      activity.find(function(err, docs){
+        if(err || !docs){
+          console.log("No activity pulled from db: "+err);
+        }else{
+          console.log("Activity succesfully loaded");
+          var i = 0;
+          for(i=0; i<docs.length; i++){
+            pulses.push(new Pulse(docs[i]));
+          }
+        }
+      });
     },
 
     checkGeoCache: function(ipAddress, callback) {

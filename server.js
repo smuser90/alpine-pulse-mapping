@@ -20,10 +20,10 @@ var sp = []; // Sanitized data for public display
 var openSockets = 0;
 
 var SOCKET_LIMIT = 6000;
-var MPS = 1000;
 var HRS = 12;
 var MINS = 60;
 var SECS = 60;
+var MPS = 1000;
 
 // Only live for 12 hours
 var cullTime = HRS * MINS * SECS * MPS;
@@ -151,7 +151,7 @@ var cullPulses = function() {
 
 var serverTick = function() {
     cullPulses();
-    dbOps.refreshAggregates();
+    dbOps.refreshAggregates(aggregates);
 };
 
 var run = function() {
@@ -159,13 +159,14 @@ var run = function() {
     server.listen(process.env.PORT || 4200);
     console.log("Server listening on port " + (process.env.PORT || 4200));
 
+    dbOps.loadActivity(pulses);
     dbOps.refreshAggregates(aggregates);
 
     // Every 30 seconds lets tick
     setInterval(serverTick, 30000);
 };
 
-dbOps.setupDBs(mapDB, persistenceDB);
+dbOps.setupDBs(mapDB, persistenceDB, Pulse);
 
 sr.setupRoutes(dbOps.cacheAnalytics, isNewIP, dbOps.checkGeoCache,
               updateTimestamp, updatePulseList, aggregates);
