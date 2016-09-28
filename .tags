@@ -1423,18 +1423,6 @@ mapData	/Users/macmin/Documents/alpine-pulse-mapping/server/app.js	/^var mapData
 mapData	/Users/macmin/Documents/alpine-pulse-mapping/server/app.js	/^var mapData = function(data) {$/;"	function	line:3
 post	/Users/macmin/Documents/alpine-pulse-mapping/server/app.js	/^var post = function post(postURL, jsonData) {$/;"	function	line:12
 post	/Users/macmin/Documents/alpine-pulse-mapping/server/app.js	/^var post = function post(postURL, jsonData) {$/;"	function	line:12
-pulses	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var pulses = [];$/;"	variable	line:1
-ipAddress	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var ipAddress = '';$/;"	variable	line:2
-connected	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var connected = false;$/;"	variable	line:3
-socket	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var socket = io.connect($/;"	variable	line:4
-refreshMap	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var refreshMap = function() {$/;"	function	line:25
-popupTemplate	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^        popupTemplate: function(geo, data) {$/;"	function	line:28
-refreshMap	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var refreshMap = function() {$/;"	function	line:25
-onConnect	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onConnect = function(data) {$/;"	function	line:37
-onConnect	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onConnect = function(data) {$/;"	function	line:37
-onPulse	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onPulse = function(data) {$/;"	function	line:42
-setTimeout	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^        setTimeout(function() {$/;"	function	line:47
-onPulse	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onPulse = function(data) {$/;"	function	line:42
 html	/Users/macmin/Documents/alpine-pulse-mapping/server/index.html	/^<html lang="en">$/;"	function	line:2
 head	/Users/macmin/Documents/alpine-pulse-mapping/server/index.html	/^<head>$/;"	function	line:4
 title	/Users/macmin/Documents/alpine-pulse-mapping/server/index.html	/^    <title>World Pulse<\/title>$/;"	function	line:5
@@ -1526,3 +1514,15 @@ cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^  
 module.exports.cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:91
 refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    refreshAggregates: function(aggregates) {$/;"	function	line:124
 module.exports.refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:122
+pulses	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var pulses = [];$/;"	variable	line:1
+ipAddress	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var ipAddress = '';$/;"	variable	line:2
+connected	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var connected = false;$/;"	variable	line:3
+socket	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var socket = io.connect($/;"	variable	line:4
+refreshMap	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var refreshMap = function() {$/;"	function	line:25
+popupTemplate	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^        popupTemplate: function(geo, data) {$/;"	function	line:28
+refreshMap	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var refreshMap = function() {$/;"	function	line:25
+onConnect	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onConnect = function(data) {$/;"	function	line:37
+onConnect	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onConnect = function(data) {$/;"	function	line:37
+onPulse	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onPulse = function(data) {$/;"	function	line:42
+setTimeout	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^        setTimeout(function() {$/;"	function	line:47
+onPulse	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onPulse = function(data) {$/;"	function	line:42
