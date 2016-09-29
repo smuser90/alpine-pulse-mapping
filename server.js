@@ -20,7 +20,7 @@ var sp = []; // Sanitized data for public display
 var openSockets = 0;
 
 var SOCKET_LIMIT = 6000;
-var HRS = 12;
+var HRS = 36;
 var MINS = 60;
 var SECS = 60;
 var MPS = 1000;

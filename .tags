@@ -1487,6 +1487,7 @@ cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^  
 module.exports.cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:93
 refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    refreshAggregates: function(aggregates) {$/;"	function	line:126
 module.exports.refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:124
+use strict.config.app_name	/Users/macmin/Documents/alpine-pulse-mapping/newrelic.js	/^exports.config = {$/;"	property	line:9
 sr	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sr = require('.\/server\/serverRoutes');$/;"	variable	line:2
 dbOps	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var dbOps = require('.\/server\/dbOps');$/;"	variable	line:3
 http	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var http = require('http');$/;"	variable	line:4
@@ -1502,7 +1503,7 @@ pulses	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var pulses = [];
 sp	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sp = []; \/\/ Sanitized data for public display$/;"	variable	line:19
 openSockets	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var openSockets = 0;$/;"	variable	line:20
 SOCKET_LIMIT	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SOCKET_LIMIT = 6000;$/;"	variable	line:22
-HRS	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var HRS = 12;$/;"	variable	line:23
+HRS	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var HRS = 36;$/;"	variable	line:23
 MINS	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var MINS = 60;$/;"	variable	line:24
 SECS	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var SECS = 60;$/;"	variable	line:25
 MPS	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var MPS = 1000;$/;"	variable	line:26
@@ -1526,4 +1527,3 @@ serverTick	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var serverTi
 serverTick	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var serverTick = function() {$/;"	function	line:152
 run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:157
 run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:157
-use strict.config.app_name	/Users/macmin/Documents/alpine-pulse-mapping/newrelic.js	/^exports.config = {$/;"	property	line:9
