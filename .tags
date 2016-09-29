@@ -1487,7 +1487,6 @@ cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^  
 module.exports.cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:93
 refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    refreshAggregates: function(aggregates) {$/;"	function	line:126
 module.exports.refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:124
-use strict.config.app_name	/Users/macmin/Documents/alpine-pulse-mapping/newrelic.js	/^exports.config = {$/;"	property	line:9
 sr	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var sr = require('.\/server\/serverRoutes');$/;"	variable	line:2
 dbOps	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var dbOps = require('.\/server\/dbOps');$/;"	variable	line:3
 http	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var http = require('http');$/;"	variable	line:4
@@ -1527,3 +1526,4 @@ serverTick	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var serverTi
 serverTick	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var serverTick = function() {$/;"	function	line:152
 run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:157
 run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:157
+use strict.config.app_name	/Users/macmin/Documents/alpine-pulse-mapping/newrelic.js	/^exports.config = {$/;"	property	line:9
