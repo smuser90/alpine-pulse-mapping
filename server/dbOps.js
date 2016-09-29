@@ -134,7 +134,9 @@ module.exports = {
                 }
             }], {}, // no options
             function(err, data) {
-                aggregates.photos = data[0].photos;
+                if(data){
+                  aggregates.photos = data[0].photos;
+                }
             }
         );
 
@@ -147,7 +149,9 @@ module.exports = {
                 }
             }], {}, // no options
             function(err, data) {
-                aggregates.videos = data[0].videos;
+                if(data){
+                  aggregates.videos = data[0].videos;
+                }
             }
         );
 
@@ -160,7 +164,9 @@ module.exports = {
                 }
             }], {}, // no options
             function(err, data) {
-                aggregates.timelapses = data[0].timelapses;
+                if(data){
+                  aggregates.timelapses = data[0].timelapses;
+                }
             }
         );
 
@@ -173,7 +179,9 @@ module.exports = {
                 }
             }], {}, // no options
             function(err, data) {
-                aggregates.sessions = data[0].sessions;
+                if(data){
+                  aggregates.sessions = data[0].sessions;
+                }
             }
         );
 
@@ -186,7 +194,9 @@ module.exports = {
                 }
             }], {}, // no options
             function(err, data) {
-                aggregates.uptime = data[0].uptime;
+                if(data){
+                  aggregates.uptime = data[0].uptime;
+                }
             }
         );
 
@@ -199,7 +209,9 @@ module.exports = {
                 }
             }], {}, // no options
             function(err, data) {
-                aggregates.thumbnails = data[0].thumbnails;
+                if(data){
+                  aggregates.thumbnails = data[0].thumbnails;
+                }
             }
         );
     }
