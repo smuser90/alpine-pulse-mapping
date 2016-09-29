@@ -4,18 +4,4 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^var mapDB,$/;"	variable	line:1
-setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    setupDBs: function(_mapDB, _persistenceDB, _Pulse, _grabGeo){$/;"	function	line:10
-module.exports.setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^module.exports = {$/;"	method	line:9
-cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheActivity: function(pulses) {$/;"	function	line:37
-module.exports.cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:35
-loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    loadActivity: function(pulses) {$/;"	function	line:53
-module.exports.loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:51
-checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    checkGeoCache: function(ipAddress, callback) {$/;"	function	line:68
-module.exports.checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:66
-saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    saveGeoData: function(geoData){$/;"	function	line:83
-module.exports.saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:81
-cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheAnalytics: function(req){$/;"	function	line:95
-module.exports.cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:93
-refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    refreshAggregates: function(aggregates) {$/;"	function	line:126
-module.exports.refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:124
+use strict.config.app_name	/Users/macmin/Documents/alpine-pulse-mapping/newrelic.js	/^exports.config = {$/;"	property	line:9

@@ -1,4 +1,4 @@
-
+require('newrelic');
 var sr = require('./server/serverRoutes');
 var dbOps = require('./server/dbOps');
 var http = require('http');
