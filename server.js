@@ -166,7 +166,7 @@ var run = function() {
     setInterval(serverTick, 30000);
 };
 
-dbOps.setupDBs(mapDB, persistenceDB, Pulse);
+dbOps.setupDBs(mapDB, persistenceDB, Pulse, grabGeoFromIP);
 
 sr.setupRoutes(dbOps.cacheAnalytics, isNewIP, dbOps.checkGeoCache,
               updateTimestamp, updatePulseList, aggregates);

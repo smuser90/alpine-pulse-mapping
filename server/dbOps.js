@@ -3,11 +3,13 @@ persistenceDB,
 analytics,
 activity,
 geoCache,
+grabGeoFromIP,
 Pulse;
 
 module.exports = {
-    setupDBs: function(_mapDB, _persistenceDB, _Pulse){
+    setupDBs: function(_mapDB, _persistenceDB, _Pulse, _grabGeo){
 
+      grabGeoFromIP = _grabGeo;
       Pulse = _Pulse;
       mapDB = _mapDB;
       persistenceDB = _persistenceDB;
