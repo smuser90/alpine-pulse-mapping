@@ -140,6 +140,12 @@ module.exports = {
             }
         );
 
+        analytics.runCommand('count', function (err, res){
+          if(res && res.ok){
+            aggregates.devices = res.n;
+          }
+        });
+
         analytics.aggregate([{
                 $group: {
                     _id: null,

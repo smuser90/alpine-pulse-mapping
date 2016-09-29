@@ -43,6 +43,14 @@ module.exports = {
         }
     );
 
+    app.get('/api/devices',
+        function(req, res, next) {
+            res.json({
+                devices: aggregates.devices
+            });
+        }
+    );
+
     app.get('/api/photos',
         function(req, res, next) {
             res.json({
