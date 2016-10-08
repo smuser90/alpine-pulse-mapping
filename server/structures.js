@@ -17,9 +17,10 @@ module.exports = {
         time: pulse.time,
         latitude: pulse.latitude,
         longitude: pulse.longitude,
-        radius: pulse.radius,
+        radius: Math.round(pulse.radius, 2),
         region: pulse.region,
-        country: pulse.country
+        country: pulse.country,
+        city: pulse.city
     };
   }
 };

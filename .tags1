@@ -4,18 +4,18 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^var mapDB,$/;"	variable	line:1
-setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    setupDBs: function(_mapDB, _persistenceDB, _Pulse, _grabGeo){$/;"	function	line:10
-module.exports.setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^module.exports = {$/;"	method	line:9
-cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheActivity: function(pulses) {$/;"	function	line:37
-module.exports.cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:35
-loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    loadActivity: function(pulses) {$/;"	function	line:53
-module.exports.loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:51
-checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    checkGeoCache: function(ipAddress, callback) {$/;"	function	line:68
-module.exports.checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:66
-saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    saveGeoData: function(geoData){$/;"	function	line:83
-module.exports.saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:81
-cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheAnalytics: function(req){$/;"	function	line:95
-module.exports.cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:93
-refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    refreshAggregates: function(aggregates) {$/;"	function	line:126
-module.exports.refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:124
+pulses	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var pulses = [];$/;"	variable	line:1
+ipAddress	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var ipAddress = '';$/;"	variable	line:2
+connected	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var connected = false;$/;"	variable	line:3
+hq.lat	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var hq = {$/;"	property	line:5
+socket	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var socket = io.connect($/;"	variable	line:10
+hqToClientArcList	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var hqToClientArcList = function(endpoints){$/;"	function	line:42
+hqToClientArcList	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var hqToClientArcList = function(endpoints){$/;"	function	line:42
+refreshMap	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var refreshMap = function() {$/;"	function	line:60
+popupTemplate	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^        popupTemplate: function(geo, data) {$/;"	function	line:63
+refreshMap	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var refreshMap = function() {$/;"	function	line:60
+onConnect	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var onConnect = function(data) {$/;"	function	line:74
+onConnect	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var onConnect = function(data) {$/;"	function	line:74
+onPulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var onPulse = function(data) {$/;"	function	line:79
+setTimeout	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^        setTimeout(function() {$/;"	function	line:84
+onPulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/client.js	/^var onPulse = function(data) {$/;"	function	line:79
