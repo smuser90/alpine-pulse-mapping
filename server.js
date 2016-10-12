@@ -62,6 +62,9 @@ var updateTimestamp = function(ip) {
             break;
         }
     }
+
+    var sanitizedPulses = sanitizePulses();
+    io.emit('pulse', JSON.stringify(sanitizedPulses));
 };
 
 var grabGeoFromIP = function(ip) {
