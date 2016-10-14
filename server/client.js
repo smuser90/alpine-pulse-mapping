@@ -53,7 +53,7 @@ var hqToClientArcList = function(endpoints){
         }
       });
     }
-  console.dir(list);
+  // console.dir(list);
   return list;
 };
 
@@ -78,12 +78,12 @@ var onConnect = function(data) {
 
 var onPulse = function(data) {
     if (data) {
-        console.log('Received pulse activity data');
+        console.log(new Date().toUTCString()+': Received pulse activity data');
         pulses = [];
         refreshMap();
         setTimeout(function() {
             pulses = JSON.parse(data);
-            console.dir(pulses);
+            // console.dir(pulses);
             refreshMap();
         }, 200);
     }
