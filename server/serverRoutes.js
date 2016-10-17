@@ -4,6 +4,7 @@ var application_root = __dirname;
 var app = express();
 var http = require('http');
 var cors = require('cors');
+var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 
 module.exports = {
@@ -11,6 +12,7 @@ module.exports = {
   setupRoutes: function(cacheAnalytics, isNewIP, checkGeoCache,
                         updateTimestamp, updatePulseList, aggregates, openSockets, pulses){
     app.use(cors());
+    app.use(favicon(__dirname + '/favicon.ico'));
 
     app.use(express.static(__dirname + '/bower_components'));
     app.use(bodyParser.json()); // to support JSON-encoded bodies
