@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 module.exports = {
   thisApp: app,
   setupRoutes: function(cacheAnalytics, isNewIP, checkGeoCache,
-                        updateTimestamp, updatePulseList, aggregates){
+                        updateTimestamp, updatePulseList, aggregates, openSockets, pulses){
     app.use(cors());
 
     app.use(express.static(__dirname + '/bower_components'));
@@ -50,6 +50,11 @@ module.exports = {
             });
         }
     );
+
+    app.get('/api/active',
+        function(req, res, next){
+          res.json({active: pulses.length});
+        });
 
     app.get('/api/photos',
         function(req, res, next) {

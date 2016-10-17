@@ -172,6 +172,6 @@ var run = function() {
 dbOps.setupDBs(mapDB, persistenceDB, Pulse, grabGeoFromIP);
 
 sr.setupRoutes(dbOps.cacheAnalytics, isNewIP, dbOps.checkGeoCache,
-              updateTimestamp, updatePulseList, aggregates);
+              updateTimestamp, updatePulseList, aggregates, openSockets, pulses);
 
 run();
