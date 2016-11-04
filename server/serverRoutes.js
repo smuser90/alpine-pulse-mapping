@@ -119,6 +119,8 @@ module.exports = {
         res.send(req.body);
 
         if(req.body.mobilePlatform){
+          console.log("post seems to be from a valid source");
+          console.dir(req.body);
           cacheAnalytics(req);
         }
     });
