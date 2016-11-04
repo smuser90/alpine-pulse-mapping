@@ -118,7 +118,9 @@ module.exports = {
         console.log("Rx'd a pulse analytics post");
         res.send(req.body);
 
-        cacheAnalytics(req);
+        if(req.body.mobilePlatform){
+          cacheAnalytics(req);
+        }
     });
 
     app.post('/api/pulse-map', function(req, res) {

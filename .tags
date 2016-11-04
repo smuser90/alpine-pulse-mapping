@@ -1451,36 +1451,6 @@ script	/Users/macmin/Documents/alpine-pulse-mapping/server/map.html	/^<script>$/
 Pulse	/Users/macmin/Documents/alpine-pulse-mapping/server/structures.js	/^  Pulse: function Pulse(geoData){$/;"	function	line:2
 SanitizedPulse	/Users/macmin/Documents/alpine-pulse-mapping/server/structures.js	/^  SanitizedPulse: function SanitizedPulse(pulse){$/;"	function	line:15
 use strict.config.app_name	/Users/macmin/Documents/alpine-pulse-mapping/newrelic.js	/^exports.config = {$/;"	property	line:9
-mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^var mapDB,$/;"	variable	line:1
-setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    setupDBs: function(_mapDB, _persistenceDB, _Pulse, _grabGeo){$/;"	function	line:10
-module.exports.setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^module.exports = {$/;"	method	line:9
-cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheActivity: function(pulses) {$/;"	function	line:37
-module.exports.cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:35
-loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    loadActivity: function(pulses) {$/;"	function	line:53
-module.exports.loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:51
-checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    checkGeoCache: function(ipAddress, callback) {$/;"	function	line:68
-module.exports.checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:66
-saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    saveGeoData: function(geoData){$/;"	function	line:83
-module.exports.saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:81
-cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheAnalytics: function(req){$/;"	function	line:95
-module.exports.cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:93
-refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    refreshAggregates: function(aggregates) {$/;"	function	line:126
-module.exports.refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:124
-mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^var mapDB,$/;"	variable	line:1
-setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    setupDBs: function(_mapDB, _persistenceDB, _Pulse, _grabGeo){$/;"	function	line:10
-module.exports.setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^module.exports = {$/;"	method	line:9
-cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheActivity: function(pulses) {$/;"	function	line:37
-module.exports.cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:35
-loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    loadActivity: function(pulses) {$/;"	function	line:53
-module.exports.loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:51
-checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    checkGeoCache: function(ipAddress, callback) {$/;"	function	line:68
-module.exports.checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:66
-saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    saveGeoData: function(geoData){$/;"	function	line:83
-module.exports.saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:81
-cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheAnalytics: function(req){$/;"	function	line:95
-module.exports.cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:93
-refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    refreshAggregates: function(aggregates) {$/;"	function	line:126
-module.exports.refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:124
 Pulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/structures.js	/^  Pulse: function Pulse(geoData){$/;"	function	line:2
 SanitizedPulse	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/structures.js	/^  SanitizedPulse: function SanitizedPulse(pulse){$/;"	function	line:15
 html	/Users/smusso/Dropbox/projects/alpine-pulse-mapping/server/index.html	/^<html lang="en">$/;"	function	line:2
@@ -1549,17 +1519,6 @@ serverTick	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var serverTi
 serverTick	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var serverTick = function() {$/;"	function	line:155
 run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:160
 run	/Users/macmin/Documents/alpine-pulse-mapping/server.js	/^var run = function() {$/;"	function	line:160
-express	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var express = require('express');$/;"	variable	line:1
-path	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var path = require('path');$/;"	variable	line:2
-application_root	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var application_root = __dirname;$/;"	variable	line:3
-app	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var app = express();$/;"	variable	line:4
-http	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var http = require('http');$/;"	variable	line:5
-cors	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var cors = require('cors');$/;"	variable	line:6
-favicon	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var favicon = require('serve-favicon');$/;"	variable	line:7
-bodyParser	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var bodyParser = require('body-parser');$/;"	variable	line:8
-module.exports.thisApp	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^module.exports = {$/;"	property	line:10
-setupRoutes	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^  setupRoutes: function(cacheAnalytics, isNewIP, checkGeoCache,$/;"	function	line:12
-module.exports.setupRoutes	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^  thisApp: app,$/;"	method	line:11
 pulses	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var pulses = [];$/;"	variable	line:1
 ipAddress	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var ipAddress = '';$/;"	variable	line:2
 connected	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var connected = false;$/;"	variable	line:3
@@ -1575,3 +1534,44 @@ onConnect	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var on
 onPulse	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onPulse = function(data) {$/;"	function	line:79
 setTimeout	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^        setTimeout(function() {$/;"	function	line:84
 onPulse	/Users/macmin/Documents/alpine-pulse-mapping/server/client.js	/^var onPulse = function(data) {$/;"	function	line:79
+mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^var mapDB,$/;"	variable	line:1
+setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    setupDBs: function(_mapDB, _persistenceDB, _Pulse, _grabGeo){$/;"	function	line:10
+module.exports.setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^module.exports = {$/;"	method	line:9
+cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheActivity: function(pulses) {$/;"	function	line:37
+module.exports.cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:35
+loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    loadActivity: function(pulses) {$/;"	function	line:53
+module.exports.loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:51
+checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    checkGeoCache: function(ipAddress, callback) {$/;"	function	line:68
+module.exports.checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:66
+saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    saveGeoData: function(geoData){$/;"	function	line:83
+module.exports.saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:81
+cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheAnalytics: function(req){$/;"	function	line:95
+module.exports.cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:93
+refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    refreshAggregates: function(aggregates) {$/;"	function	line:126
+module.exports.refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:124
+mapDB	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^var mapDB,$/;"	variable	line:1
+setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    setupDBs: function(_mapDB, _persistenceDB, _Pulse, _grabGeo){$/;"	function	line:10
+module.exports.setupDBs	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^module.exports = {$/;"	method	line:9
+cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheActivity: function(pulses) {$/;"	function	line:37
+module.exports.cacheActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:35
+loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    loadActivity: function(pulses) {$/;"	function	line:53
+module.exports.loadActivity	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:51
+checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    checkGeoCache: function(ipAddress, callback) {$/;"	function	line:68
+module.exports.checkGeoCache	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:66
+saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    saveGeoData: function(geoData){$/;"	function	line:83
+module.exports.saveGeoData	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:81
+cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    cacheAnalytics: function(req){$/;"	function	line:95
+module.exports.cacheAnalytics	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:93
+refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    refreshAggregates: function(aggregates) {$/;"	function	line:126
+module.exports.refreshAggregates	/Users/macmin/Documents/alpine-pulse-mapping/server/dbOps.js	/^    },$/;"	method	line:124
+express	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var express = require('express');$/;"	variable	line:1
+path	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var path = require('path');$/;"	variable	line:2
+application_root	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var application_root = __dirname;$/;"	variable	line:3
+app	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var app = express();$/;"	variable	line:4
+http	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var http = require('http');$/;"	variable	line:5
+cors	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var cors = require('cors');$/;"	variable	line:6
+favicon	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var favicon = require('serve-favicon');$/;"	variable	line:7
+bodyParser	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^var bodyParser = require('body-parser');$/;"	variable	line:8
+module.exports.thisApp	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^module.exports = {$/;"	property	line:10
+setupRoutes	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^  setupRoutes: function(cacheAnalytics, isNewIP, checkGeoCache,$/;"	function	line:12
+module.exports.setupRoutes	/Users/macmin/Documents/alpine-pulse-mapping/server/serverRoutes.js	/^  thisApp: app,$/;"	method	line:11
