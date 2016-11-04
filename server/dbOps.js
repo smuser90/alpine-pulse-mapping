@@ -73,7 +73,7 @@ module.exports = {
                 grabGeoFromIP(ipAddress);
             } else {
                 console.log("Found a cached geo record...");
-                console.dir(geoData);
+                // console.dir(geoData);
                 var pulse = new Pulse(geoData);
                 callback(pulse);
             }
@@ -116,8 +116,8 @@ module.exports = {
                       });
               } else {
                   console.log("Found and updated the correct analytics record");
-                  console.log(object);
-                  console.log(lastErrorObject);
+                  // console.log(object);
+                  // console.log(lastErrorObject);
               }
           }
       );
