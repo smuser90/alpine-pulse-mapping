@@ -116,8 +116,6 @@ module.exports = {
                       });
               } else {
                   console.log("Found and updated the correct analytics record");
-                  // console.log(object);
-                  // console.log(lastErrorObject);
               }
           }
       );

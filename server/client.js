@@ -53,7 +53,6 @@ var hqToClientArcList = function(endpoints){
         }
       });
     }
-  // console.dir(list);
   return list;
 };
 
@@ -83,7 +82,6 @@ var onPulse = function(data) {
         refreshMap();
         setTimeout(function() {
             pulses = JSON.parse(data);
-            // console.dir(pulses);
             refreshMap();
         }, 200);
     }

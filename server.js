@@ -78,11 +78,8 @@ var grabGeoFromIP = function(ip) {
     };
 
     var geolocationRequest = http.request(options, function(res) {
-        // console.log('STATUS: ' + res.statusCode);
-        // console.log('HEADERS: ' + JSON.stringify(res.headers));
         res.setEncoding('utf8');
         res.on('data', function(chunk) {
-            // console.log('Got a geo response! BODY: ' + chunk);
 
             var geoData = JSON.parse(chunk);
             dbOps.saveGeoData(geoData);
@@ -93,7 +90,6 @@ var grabGeoFromIP = function(ip) {
     });
 
     geolocationRequest.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
     });
 
     // write data to request body
@@ -119,7 +115,6 @@ var updatePulseList = function(pulse) {
     }
     console.log();
     console.log("Pulse List Updated...");
-    console.dir(pulses);
 
     var sanitizedPulses = sanitizePulses();
     io.emit('pulse', JSON.stringify(sanitizedPulses));
