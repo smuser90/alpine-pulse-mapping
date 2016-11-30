@@ -67,7 +67,7 @@ var refreshMap = function() {
         }
     });
 
-    map.arc( hqToClientArcList(pulses));
+    // map.arc( hqToClientArcList(pulses));
 };
 
 var onConnect = function(data) {
